@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRPI UI project.Plugins", "CRPI UI project.Plugins.csproj", "{34681C5A-C6D1-67F4-715C-5AE75EA130A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRPI UI project", "CRPI UI project.csproj", "{7EDF2E70-B3A9-AFE7-F2EE-1F1D8662E65F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRPI UI project.Editor.Plugins", "CRPI UI project.Editor.Plugins.csproj", "{F04CC19D-B60E-BDE5-61B1-0015BCD0E922}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34681C5A-C6D1-67F4-715C-5AE75EA130A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34681C5A-C6D1-67F4-715C-5AE75EA130A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34681C5A-C6D1-67F4-715C-5AE75EA130A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34681C5A-C6D1-67F4-715C-5AE75EA130A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDF2E70-B3A9-AFE7-F2EE-1F1D8662E65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDF2E70-B3A9-AFE7-F2EE-1F1D8662E65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDF2E70-B3A9-AFE7-F2EE-1F1D8662E65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDF2E70-B3A9-AFE7-F2EE-1F1D8662E65F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04CC19D-B60E-BDE5-61B1-0015BCD0E922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04CC19D-B60E-BDE5-61B1-0015BCD0E922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04CC19D-B60E-BDE5-61B1-0015BCD0E922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04CC19D-B60E-BDE5-61B1-0015BCD0E922}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

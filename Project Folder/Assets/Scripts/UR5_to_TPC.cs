@@ -25,12 +25,14 @@ public class UR5_to_TPC : MonoBehaviour
     gripper_kinematic grip_obj;
     public GameObject robot;
     public Button send_msg;
+    TCP_scanner_and_selector_19 tcp_scan; 
 
     // Use this for initialization
     void Start()
     {
         server = GetComponent<TCP_Server>();
         GameObject gripper = GameObject.Find("Base_Gripper");
+        tcp_scan = GetComponent<TCP_scanner_and_selector_19>(); 
         grip_obj = gripper.GetComponent<gripper_kinematic>();
 
         //GameObject robot = GameObject.Find("UR5");
@@ -62,8 +64,9 @@ public class UR5_to_TPC : MonoBehaviour
 
     void add_active_state()
     {
-        output_string = convert_array(angle_controller.get_vector_UR5());
-        output_string += add_gripper();
+        output_string = convert_array(angle_controller.get_vector_UR5());   //Get the robot coordninates
+        output_string += add_gripper();                                     //Get the gripper status
+        output_string += tcp_scan.return_target_object();                   //Get the currently selected robot status
         output_string += "\n";
         //server.SendMessage(output_string);
         server.set_msg(output_string);

@@ -31,7 +31,7 @@ public class raycast_collision_19 : MonoBehaviour {
 	}
 
     //Simple method to get what was hit for use with other scripts. 
-    GameObject get_obj()
+    public GameObject get_obj()
     {
         return hit_obj;
     }
