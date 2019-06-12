@@ -56,7 +56,7 @@ public class UR5_to_TPC : MonoBehaviour
     {
         string out_stg = null;
 
-        out_stg += "Gripper:";
+        //out_stg += "Gripper:";
         out_stg += grip_obj.get_ratio().ToString();
         out_stg += ";";
         return out_stg;

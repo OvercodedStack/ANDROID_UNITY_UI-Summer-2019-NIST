@@ -30,6 +30,8 @@ namespace TPC_Server
         #endregion
         public string IPC_comms_message = "null_msg";
         public string IPC_output = "null";
+        public string IP_adress = "127.0.0.1";
+        public int Port_adress = 27000; 
 
         // Use this for initialization
         void Start()
@@ -61,8 +63,8 @@ namespace TPC_Server
         {
             try
             {
-                // Create listener on localhost port 8052. 			
-                tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 27015);
+                // Create listener on localhost port 27000. 			
+                tcpListener = new TcpListener(IPAddress.Parse(IP_adress), Port_adress);
                 tcpListener.Start();
                 Debug.Log("Server is listening");
                 Byte[] bytes = new Byte[1024];

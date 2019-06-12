@@ -35,4 +35,9 @@ public class raycast_collision_19 : MonoBehaviour {
     {
         return hit_obj;
     }
+
+    public string get_name()
+    {
+        return hit_obj.name;
+    }
 }
