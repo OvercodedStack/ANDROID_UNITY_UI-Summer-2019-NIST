@@ -103,6 +103,7 @@
      <Compile Include="Assets\Scripts\Continously_dynamic_script.cs" />
      <Compile Include="Assets\Scripts\Dynamic_Mesh_Collider.cs" />
      <Compile Include="Assets\Scripts\gripper_kinematic.cs" />
+     <Compile Include="Assets\Scripts\handlepoint_movement_joysticks.cs" />
      <Compile Include="Assets\Scripts\Mouse_drag.cs" />
      <Compile Include="Assets\Scripts\raycast_collision_19.cs" />
      <Compile Include="Assets\Scripts\Robot_data_utilities.cs" />
@@ -319,14 +320,11 @@
  <Reference Include="ViconDataStreamSDK_CSharp">
  <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/Plugins/Vicon Unity Plugin/Plugins/ViconDataStreamSDK_CSharp.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Users/ems9/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
+ <Reference Include="MathNet.Numerics">
+ <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/MathNet.Numerics.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Users/ems9/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="websocket-sharp">
- <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="RosBridgeClient">
  <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
@@ -334,14 +332,17 @@
  <Reference Include="System.Threading">
  <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/System.Threading.dll</HintPath>
  </Reference>
- <Reference Include="MathNet.Numerics">
- <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/MathNet.Numerics.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
- </Reference>
  <Reference Include="UrdfImporter">
  <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/UrdfImporter.dll</HintPath>
+ </Reference>
+ <Reference Include="websocket-sharp">
+ <HintPath>C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Users/ems9/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>C:/Users/ems9/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

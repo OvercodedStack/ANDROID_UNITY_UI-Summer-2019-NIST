@@ -41,7 +41,7 @@ public class ViconDataStreamClient : MonoBehaviour
     private bool bSubjectFilterSet = false;
     private bool bThreadRunning = false;
     Thread m_Thread;
-    public Text data_UI;
+    public Image data_UI;
 
     public delegate void ConnectionCallback(bool i_bConnected);
     public static void OnConnected(bool i_bConnected)
@@ -240,7 +240,7 @@ public class ViconDataStreamClient : MonoBehaviour
         //print(out_4.MarkerCount);
         //print(out_3.SubjectName);
         //print(output.MarkerCount);
-        data_UI.text = "Client connection success.";
+        data_UI.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
         print(out_4.SegmentName);
         print(out_5.Translation[0]);
         //print(output.Result);
