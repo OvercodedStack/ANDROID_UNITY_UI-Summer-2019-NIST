@@ -27,7 +27,6 @@ public class UR5_to_TPC : MonoBehaviour
     public GameObject robot;
     public Button send_msg;
     public bool enable_tcp_srv = true; 
-    
 
 
     //TCP_scanner_and_selector_19 tcp_scan; 
@@ -97,6 +96,11 @@ public class UR5_to_TPC : MonoBehaviour
         server.set_msg(output_string);
     }
 
+    public string get_message()
+    {
+        return output_string;
+    }
+
     string decode_str(string word)
     {
         switch (word)
@@ -115,6 +119,9 @@ public class UR5_to_TPC : MonoBehaviour
                 return "0,";
         }
     }
+
+
+ 
 
     string convert_array(float[] array_in)
     {

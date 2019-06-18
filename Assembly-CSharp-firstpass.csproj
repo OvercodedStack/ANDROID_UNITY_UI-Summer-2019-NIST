@@ -52,6 +52,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Plugins\Manus\Manus.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Demo\Read And Write\CsvTest.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Demo\Read And Write\TestRowData.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Script\CsvHelper.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Script\CsvTable.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Script\CsvTableCoords.cs" />
      <Compile Include="Assets\Plugins\Vicon Unity Plugin\Plugins\HmdFusionUtils.cs" />
      <Compile Include="Assets\Plugins\Vicon Unity Plugin\Scripts\HMDScript.cs" />
      <Compile Include="Assets\Plugins\Vicon Unity Plugin\Scripts\RBScript.cs" />
@@ -186,6 +191,7 @@
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+     <None Include="Assets\Plugins\RedScarf\EasyCsv\Editor\EditorResources\EditorConfig.txt" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />
  <Reference Include="UnityEngine.UI">

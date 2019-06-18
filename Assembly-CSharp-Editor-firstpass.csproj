@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Editor\EditorResources\Csv2Class\Csv2Class.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Editor\Window\CsvFormatConvertWindow.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Editor\Window\CsvToolsWindow.cs" />
+     <Compile Include="Assets\Plugins\RedScarf\EasyCsv\Editor\Window\SimpleClassCreater.cs" />
      <Compile Include="Assets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\Standard Assets\Editor\Water\Water4\GerstnerDisplaceEditor.cs" />
      <Compile Include="Assets\Standard Assets\Editor\Water\Water4\PlanarReflectionEditor.cs" />
@@ -100,6 +104,7 @@
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+     <None Include="Assets\Plugins\RedScarf\EasyCsv\Editor\EditorResources\EditorConfig.txt" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />
  <Reference Include="UnityEngine.UI">

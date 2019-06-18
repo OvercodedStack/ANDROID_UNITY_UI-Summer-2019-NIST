@@ -48,10 +48,10 @@ public class Camera_controls : MonoBehaviour
         //    CameraDisabled = !CameraDisabled;
 
         
-        if (Input.GetMouseButton(1))
-        //
+        //if (Input.GetMouseButton(1))
+        if(Input.GetAxis("Fire2") != 0)
         {
-
+            Debug.Log("am I triggered?");
             _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
             _LocalRotation.y += Input.GetAxis("Mouse Y") * turn_speed;
 
