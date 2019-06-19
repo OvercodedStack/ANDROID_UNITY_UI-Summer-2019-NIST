@@ -28,8 +28,10 @@ public class Mouse_drag : MonoBehaviour {
 
     public Vector3 debug_vector;
     private void OnMouseDrag()
-    {      
-        Vector3 mouse_pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+    {
+        Vector3 temp_pos = transform.position;
+
+        Vector3 mouse_pos = new Vector3(temp_pos.x +Input.mousePosition.x, temp_pos.y + Input.mousePosition.y, distance);
         Vector3 obj_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
 
         debug_vector = obj_pos;
