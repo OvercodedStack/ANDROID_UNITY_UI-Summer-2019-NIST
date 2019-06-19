@@ -8,21 +8,29 @@ public class Joystick_control : MonoBehaviour {
     public RightJoystick r_joy;
     Button button;
     bool invert_axis;
-    float scaling_number = 1.0F;
-    public Vector3 pub;
+    public float scaling_number = 1.0F;
 
 
  	void LateUpdate () {
         Vector3 angls = transform.rotation.eulerAngles;
         Vector3 l_vec = l_joy.GetInputDirection();
         Vector3 r_vec = r_joy.GetInputDirection();
-        pub = new Vector3(l_vec.x, l_vec.y, angls.z);
-        transform.Rotate(l_vec.x, l_vec.y, 0);
+        l_vec = l_vec * scaling_number;
+        r_vec = r_vec * scaling_number;
 
-        transform.Translate(r_vec.x, r_vec.y, 0);
+        if (invert_axis)
+        {
+            transform.Rotate(l_vec.x, l_vec.y, 0);
+            transform.Translate(r_vec.x, r_vec.y, 0);
+        }
+        else
+        {
+            transform.Rotate(0, l_vec.x, l_vec.y);
+            transform.Translate(0, r_vec.x, r_vec.y);
+        }
 	}
 
-    void on_action()
+    public void on_action()
     {
         invert_axis = !invert_axis;
     }

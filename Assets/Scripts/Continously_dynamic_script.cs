@@ -16,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Make_me_coninously_dynamic : MonoBehaviour {
+public class Continously_dynamic_script : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Rigidbody[] rig;

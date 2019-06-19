@@ -14,10 +14,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mouse_drag : MonoBehaviour {
     public float distance;
     public float additive_ratio = 1.0f;
+    private Vector3 reset_position_vec;
+    private Quaternion reset_orientation; 
+
+    void Start()
+    {
+        reset_position_vec = transform.position;
+        reset_orientation = transform.rotation;
+    }
 
 
     private void OnMouseDown()
@@ -49,5 +58,11 @@ public class Mouse_drag : MonoBehaviour {
         {
             distance += -additive_ratio;
         }
+    }
+
+    public void reset_pos_butt()
+    {
+        transform.position = reset_position_vec;
+        transform.rotation = reset_orientation; 
     }
 }

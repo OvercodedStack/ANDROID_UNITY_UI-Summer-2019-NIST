@@ -19,25 +19,44 @@ public class CSV_writer : MonoBehaviour
     List<string> string_list = new List<string>(); //List of CSV file names in string format 
     UR5_to_TPC converter;     //Workaround to get data that's being sent to the robot. 
 
+
+    public string output_csv; 
     public float update_rate = 2.0F; //The update rate to save to a csv file
     public bool update_save = false;  //Check to start saving data to a CSV file or not
     private string temp_name;
+    public GameObject obj_box;
 
+    //Get time from https://stackoverflow.com/questions/296920/how-do-you-get-the-current-time-of-day
     // Use this for initialization
     void Start()
     {
         converter = GetComponent<UR5_to_TPC>();
         update_list();
-        float module = System.DateTime.Today.Millisecond;
         file_name = path;
         file_name += "/CSV_Rbt_dat_";
-        file_name += module.ToString();
+        file_name += "0"; 
+
+        file_name += DateTime.Now.ToString("hmmss");
         file_name += ".csv";
 
         temp_name = file_name;
         old_time = Time.time;
+        try
+        {
+            using (var sw = new StreamWriter(temp_name, true))
+            {
+                var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4";
+                newLine +=    ",X,Y,Z,Q_X,Q_Y,Q_Z,Q_W";
+                sw.WriteLine(newLine);
+                sw.Flush();
+            }
+            update_list();
+        }
+        catch
+        {
+            Debug.LogError("IO error encountered");
+        }
 
- 
     }
 
     //Function to update the dropdown menu with all possible files in the CSV folder
@@ -45,6 +64,7 @@ public class CSV_writer : MonoBehaviour
     {
         var info = new DirectoryInfo(path);
         var fileInfo = info.GetFiles();
+        string_list.Clear(); 
         foreach (FileInfo f in fileInfo)
         {
             string_list.Add(f.Name);
@@ -70,53 +90,53 @@ public class CSV_writer : MonoBehaviour
     public void load_data(string file_name)
     {
         data = CSVReader.Read(file_name);
+        update_list();
         counter = 0;
     }
 
     //Phrase one line of data, returns one output_string block
     int counter; 
-    public string recall_line()
+    public void recall_line()
     {
         string line = (string)data[counter]["Angle-Joints"] + (string)data[counter]["RbtID"] +
             (string)data[counter]["GripperStat"] + (string)data[counter]["DO1"] + (string)data[counter]["DO2"]
             + (string)data[counter]["DO3"] + (string)data[counter]["DO4"];
         counter++;
-        return line;
+        output_csv = line; 
     }
-    
+
     //Stores the header and appends data to a file.
+    //Best reference: https://www.youtube.com/watch?v=vDpww7HsdnM
     public void store_data()
     {
-        using (var sw = new StreamWriter(temp_name))
+        try
         {
-            
-            //in your loop
+            using (var sw = new StreamWriter(temp_name,true))
+            {
+                //Get the pose message being sent to robot. 
+                string temp_msg = converter.get_message();
+                temp_msg = temp_msg.Replace(";", "");
+                temp_msg = temp_msg.Replace("UR5_pos:", "");
+                temp_msg = temp_msg.Replace("Robot Utilities:",",");
+                temp_msg = temp_msg.Replace("\n", "");
 
-            if (!File.Exists(temp_name))
-            {
-                var newLine = "Angle-Joints,RbtID,GripperStat,DO1,DO2,DO3,DO4";
-                sw.WriteLine(newLine);
-            }else
-            {
-                sw.WriteLine(Time.time.ToString());
+                //Write in the position and quaternion of the control node in Unity
+
+                var box_msg = obj_box.transform.position.ToString();
+                box_msg += obj_box.transform.rotation.ToString();
+                box_msg = box_msg.Replace("(", "");
+                box_msg = box_msg.Replace(")", ",");
+                temp_msg = temp_msg +"," + box_msg; 
+                
+                //Write it out to a CSV file
+                sw.WriteLine(temp_msg);
+                sw.Flush();
             }
-            sw.Flush();
-
-             //after your loop
-             /*
-            if (!File.Exists(file_name))
-            {
-                string header = "Angle-Joints,RbtID,GripperStat,DO1,DO2,DO3,DO4";
-                sw.WriteLine(header);
-            }*/
-            //string filePath = getPath();
-
-            // sw.WriteLine(Time.time);
-            //File.AppendAllText(file_name, converter.get_message());
         }
-
-
-        update_list();
+        catch
+        {
+            Debug.LogError("IO error encountered");
+        }
     }
 
 
@@ -165,8 +185,8 @@ public class CSVReader
             for (var j = 0; j < header.Length && j < values.Length; j++)
             {
                 string value = values[j];
-                value.Replace("Robot Utilities:", "");
-                value.Replace(";", "");
+                //value.Replace("Robot Utilities:", "");
+                //value.Replace(";", "");
                 value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                 object finalvalue = value;
                 int n;

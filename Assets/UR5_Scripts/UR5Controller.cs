@@ -81,6 +81,8 @@ public class UR5Controller : MonoBehaviour {
         
     }
 
+
+    public Image img_warn_singularity; 
     // Update is called once per frame
     void Update() {
         //TextControl.text = string.Format("({0:0.0}, {1:0.0}, {2:0.0}, {3:0.0}, {4:0.0}, {5:0.0})",
@@ -100,7 +102,17 @@ public class UR5Controller : MonoBehaviour {
             Vector3 currentRotation = jointList[i].transform.localEulerAngles;
             //Debug.Log(currentRotation);
             currentRotation.z = jointValues[i];
+
             jointList[i].transform.localEulerAngles = currentRotation;
+            if (!Double.IsNaN(currentRotation.z))
+            {
+                img_warn_singularity.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
+            }else
+            {
+                img_warn_singularity.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+
+            }
+
         }
     }
 
