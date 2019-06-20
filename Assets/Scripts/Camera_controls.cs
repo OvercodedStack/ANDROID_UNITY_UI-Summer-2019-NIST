@@ -51,8 +51,7 @@ public class Camera_controls : MonoBehaviour
         //if (Input.GetMouseButton(1))
         if(Input.GetAxis("Fire2") != 0)
         {
-            Debug.Log("am I triggered?");
-            _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
+             _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
             _LocalRotation.y += Input.GetAxis("Mouse Y") * turn_speed;
 
             //Clamp the y Rotation to horizon and not flipping over at the top

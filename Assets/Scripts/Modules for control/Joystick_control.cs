@@ -8,15 +8,15 @@ public class Joystick_control : MonoBehaviour {
     public RightJoystick r_joy;
     Button button;
     bool invert_axis;
-    public float scaling_number = 1.0F;
-
+    public Slider spd_drg; 
+ 
 
  	void LateUpdate () {
         Vector3 angls = transform.rotation.eulerAngles;
         Vector3 l_vec = l_joy.GetInputDirection();
         Vector3 r_vec = r_joy.GetInputDirection();
-        l_vec = l_vec * scaling_number;
-        r_vec = r_vec * scaling_number;
+        l_vec = l_vec * spd_drg.value;
+        r_vec = r_vec * spd_drg.value;
 
         if (invert_axis)
         {

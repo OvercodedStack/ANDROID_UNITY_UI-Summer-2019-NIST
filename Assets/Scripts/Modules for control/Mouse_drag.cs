@@ -20,12 +20,28 @@ public class Mouse_drag : MonoBehaviour {
     public float distance;
     public float additive_ratio = 1.0f;
     private Vector3 reset_position_vec;
-    private Quaternion reset_orientation; 
+    private Quaternion reset_orientation;
+    public Toggle move_to_position;
+    public GameObject indicator;
+    public float speed = 3.0F; 
 
     void Start()
     {
         reset_position_vec = transform.position;
         reset_orientation = transform.rotation;
+    }
+
+
+    void Update()
+    {
+
+        if (move_to_position.isOn)
+        {
+            float step = speed * Time.deltaTime; 
+            transform.position = Vector3.MoveTowards(transform.position,indicator.transform.position,step);
+            transform.rotation = indicator.transform.rotation;
+
+        }
     }
 
 

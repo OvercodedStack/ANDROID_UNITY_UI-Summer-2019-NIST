@@ -7,12 +7,14 @@ using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System.Text;
 
+
 //Starts using code from https://shanemartin2797blog.wordpress.com/2015/11/20/how-to-read-from-and-write-to-csv-in-unity/
 public class CSV_writer : MonoBehaviour
 {
     public string file_name;        //The file name being selected as a starting file to work with. 
     public Dropdown Dropdown_menu;  //UI element
-    private string path = "C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/CSV Files";
+    //All CSV files must go into the resources folder in order for Unity to find them
+    private string path = "C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/Resources";
     //The pathname where the CSV files are going to be stored
     List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
     // The literal data inside a CSV file
@@ -21,10 +23,13 @@ public class CSV_writer : MonoBehaviour
 
 
     public string output_csv; 
-    public float update_rate = 2.0F; //The update rate to save to a csv file
-    public bool update_save = false;  //Check to start saving data to a CSV file or not
     private string temp_name;
     public GameObject obj_box;
+    public GameObject indicator;
+    public Toggle toggle_recording;
+    public Slider refresh_rate;
+    public Toggle toggle_replay; 
+
 
     //Get time from https://stackoverflow.com/questions/296920/how-do-you-get-the-current-time-of-day
     // Use this for initialization
@@ -33,14 +38,14 @@ public class CSV_writer : MonoBehaviour
         converter = GetComponent<UR5_to_TPC>();
         update_list();
         file_name = path;
-        file_name += "/CSV_Rbt_dat_";
-        file_name += "0"; 
-
+        file_name += "/CSV_dat_";
         file_name += DateTime.Now.ToString("hmmss");
         file_name += ".csv";
 
         temp_name = file_name;
         old_time = Time.time;
+
+        //Write the header to the presently opened file and include its unique name. 
         try
         {
             using (var sw = new StreamWriter(temp_name, true))
@@ -63,46 +68,76 @@ public class CSV_writer : MonoBehaviour
     void update_list()
     {
         var info = new DirectoryInfo(path);
+        //Calls in and dumps all the string names into an array
         var fileInfo = info.GetFiles();
         string_list.Clear(); 
         foreach (FileInfo f in fileInfo)
         {
             string_list.Add(f.Name);
         }
+        //Clear the menu and add in all the given values. 
         Dropdown_menu.ClearOptions();
         Dropdown_menu.AddOptions(string_list);
     }
 
     //Runs two functionalities, checking what the dropbox menu has and also rate of data storage.
-    float old_time; 
+    float old_time; //Time keeeping for timers
     void Update()
     {
+        //This selects the string from which the dropdown menu was selected from. 
         file_name = string_list[Dropdown_menu.value];
-
         float new_time = Time.time;
-        if (update_save && new_time  > old_time + update_rate )
+
+        //Refresh the data at a slider-specific rate and also when toggled to do so. 
+        if (toggle_recording.isOn && !toggle_replay.isOn && new_time  > old_time + refresh_rate.value)
+        { 
+            //Calls the CSV file to append dataw
+            store_data();
+            old_time = Time.time;
+        }
+
+        //Recall a line with a given refresh rate and when toggled to do so. 
+        if (!toggle_recording.isOn && toggle_replay.isOn && new_time > old_time + refresh_rate.value)
         {
-            store_data(); 
+            recall_line();
+            old_time = Time.time;
         }
     }
     
     //Load in data from a csv and store for later use.
-    public void load_data(string file_name)
+    public void load_data()
     {
+        string temp_path = "Android App - Intelligent Sys Div/Assets/CSV Files/";
         data = CSVReader.Read(file_name);
         update_list();
         counter = 0;
+        max_limit = data.Count;
     }
 
     //Phrase one line of data, returns one output_string block
-    int counter; 
+    int counter;
+    int max_limit; 
     public void recall_line()
     {
-        string line = (string)data[counter]["Angle-Joints"] + (string)data[counter]["RbtID"] +
-            (string)data[counter]["GripperStat"] + (string)data[counter]["DO1"] + (string)data[counter]["DO2"]
-            + (string)data[counter]["DO3"] + (string)data[counter]["DO4"];
+        if (counter < max_limit)
+        {
+            indicator.transform.position = new Vector3(str2flt("X"), str2flt("Y"), str2flt("Z"));
+            indicator.transform.rotation = new Quaternion(str2flt("Q_X"), str2flt("Q_Y"), str2flt("Q_Z"), str2flt("Q_W"));
+        }
+        else
+        {
+            counter = 0;
+            indicator.transform.position = new Vector3(str2flt("X"), str2flt("Y"), str2flt("Z"));
+            indicator.transform.rotation = new Quaternion(str2flt("Q_X"), str2flt("Q_Y"), str2flt("Q_Z"), str2flt("Q_W"));
+        }
         counter++;
-        output_csv = line; 
+     }
+
+
+    //Autoconvert a string value from the data field into a float value and return
+    float str2flt(string value)
+    {
+        return (float)Convert.ToDouble(data[counter][value]);
     }
 
     //Stores the header and appends data to a file.
@@ -138,21 +173,6 @@ public class CSV_writer : MonoBehaviour
             Debug.LogError("IO error encountered");
         }
     }
-
-
-    //Redundant 
-    private string getPath()
-    {
-        #if UNITY_EDITOR
-                return Application.dataPath + "/CSV/" + "Saved_Inventory.csv";
-        #elif UNITY_ANDROID
-                        return Application.persistentDataPath+"Saved_Inventory.csv";
-        #elif UNITY_IPHONE
-                        return Application.persistentDataPath+"/"+"Saved_Inventory.csv";
-        #else
-                return Application.dataPath + "/" + "Saved_Inventory.csv";
-        #endif
-    }
 }
 
 
@@ -165,9 +185,13 @@ public class CSVReader
 
     public static List<Dictionary<string, object>> Read(string file)
     {
+        file = file.Replace(".csv", "");
+        Debug.Log(file);
         var list = new List<Dictionary<string, object>>();
         TextAsset data = Resources.Load(file) as TextAsset;
+        //TextAsset data = AssetDatabase.LoadAssetAtPath(file, typeof(TextAsset);
 
+        //Debug.Log(data.ToString());
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
 
         if (lines.Length <= 1) return list;
@@ -185,8 +209,6 @@ public class CSVReader
             for (var j = 0; j < header.Length && j < values.Length; j++)
             {
                 string value = values[j];
-                //value.Replace("Robot Utilities:", "");
-                //value.Replace(";", "");
                 value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                 object finalvalue = value;
                 int n;
@@ -206,4 +228,12 @@ public class CSVReader
         return list;
     }
 }
- 
+
+
+//Debug.Log(data[counter]["X"]);
+//Debug.Log(data[counter]["Y"]);
+//Debug.Log(data[counter]["Z"]);
+/*string line = (string)data[counter]["Angle-Joints"] + (string)data[counter]["RbtID"] +
+    (string)data[counter]["GripperStat"] + (string)data[counter]["DO1"] + (string)data[counter]["DO2"]
+    + (string)data[counter]["DO3"] + (string)data[counter]["DO4"];
+*/
