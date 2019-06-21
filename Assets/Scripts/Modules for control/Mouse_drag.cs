@@ -39,8 +39,7 @@ public class Mouse_drag : MonoBehaviour {
         {
             float step = speed * Time.deltaTime; 
             transform.position = Vector3.MoveTowards(transform.position,indicator.transform.position,step);
-            transform.rotation = indicator.transform.rotation;
-
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,indicator.transform.rotation,step);
         }
     }
 
