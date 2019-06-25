@@ -14,7 +14,7 @@
 //Some Code inherited from https://forum.unity.com/threads/moving-main-camera-with-mouse.119525/
 //Scrolling and orbit inherited from https://www.youtube.com/watch?v=bVo0YLLO43s 
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Camera_controls : MonoBehaviour
 {
     //Limits for camera 
@@ -23,6 +23,7 @@ public class Camera_controls : MonoBehaviour
     protected Vector3 _LocalRotation;
     protected float _CameraDistance = 10f;
     private Vector3 shift;
+
 
     //Speed Limits
     public float horizontal_speed = 1;
@@ -34,24 +35,29 @@ public class Camera_controls : MonoBehaviour
     public float ScrollSensitvity = 2f;
     public float OrbitDampening = 10f;
     public float ScrollDampening = 6f;
-
+    private float old_zoom; 
+    public Slider zoom_amt; 
     void Start()
     {
         this._XForm_Camera = this.transform;
         this._XForm_Parent = this.transform.parent;
+        zoom_amt.value = _CameraDistance;
+        old_zoom = _CameraDistance;
     }
 
-    // Update is called once per frame
+
+     // Update is called once per frame
     void LateUpdate()
     {
         //if ()
         //    CameraDisabled = !CameraDisabled;
 
-        
         //if (Input.GetMouseButton(1))
-        if(Input.GetAxis("Fire2") != 0)
+        //old_zoom = _CameraDistance;
+        float slide_bar = zoom_amt.value;
+        if (Input.GetAxis("Fire2") != 0 || old_zoom != slide_bar)
         {
-             _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
+            _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
             _LocalRotation.y += Input.GetAxis("Mouse Y") * turn_speed;
 
             //Clamp the y Rotation to horizon and not flipping over at the top

@@ -23,7 +23,10 @@ public class Mouse_drag : MonoBehaviour {
     private Quaternion reset_orientation;
     public Toggle move_to_position;
     public GameObject indicator;
-    public float speed = 3.0F; 
+    public float speed = 3.0F;
+
+    public Button plus_but;
+    public Button min_but;
 
     void Start()
     {
@@ -61,6 +64,18 @@ public class Mouse_drag : MonoBehaviour {
         debug_vector = obj_pos;
 
         transform.position = obj_pos; 
+    }
+
+    //Put item further away
+    public void plus_button()
+    {
+        distance += additive_ratio;
+    }
+
+    //Put item closer away;
+    public void sub_button()
+    {
+        distance += -additive_ratio;
     }
 
     void LateUpdate()

@@ -37,11 +37,11 @@ public class CSV_writer : MonoBehaviour
     {
         converter = GetComponent<UR5_to_TPC>();
         update_list();
-        file_name = path;
+        //file_name = path;
         file_name += "/CSV_dat_";
         file_name += DateTime.Now.ToString("hmmss");
         file_name += ".csv";
-
+        file_name = fix_path(file_name);
         temp_name = file_name;
         old_time = Time.time;
 
@@ -173,6 +173,19 @@ public class CSV_writer : MonoBehaviour
         {
             Debug.LogError("IO error encountered");
         }
+    }
+
+    private string fix_path(string path)
+    {
+        #if UNITY_EDITOR
+                return Application.dataPath + "/Resources/" + path;
+        #elif UNITY_ANDROID
+                return Application.persistentDataPath+path;
+        #elif UNITY_IPHONE
+                return Application.persistentDataPath+"/"+path;
+        #else
+                return Application.dataPath +"/"+path;
+        #endif
     }
 }
 

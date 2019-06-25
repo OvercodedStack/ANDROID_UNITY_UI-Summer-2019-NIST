@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android App - Intelligent S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android App - Intelligent Sys Div", "Assembly-CSharp-Editor-firstpass.csproj", "{0C934296-828E-09FF-9D24-6225E866D9BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android App - Intelligent Sys Div", "Assembly-CSharp-Editor.csproj", "{8AF96C1E-3DB3-1A50-C0C2-DABBF7ABEBB7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{0C934296-828E-09FF-9D24-6225E866D9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C934296-828E-09FF-9D24-6225E866D9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C934296-828E-09FF-9D24-6225E866D9BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AF96C1E-3DB3-1A50-C0C2-DABBF7ABEBB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AF96C1E-3DB3-1A50-C0C2-DABBF7ABEBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AF96C1E-3DB3-1A50-C0C2-DABBF7ABEBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AF96C1E-3DB3-1A50-C0C2-DABBF7ABEBB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
