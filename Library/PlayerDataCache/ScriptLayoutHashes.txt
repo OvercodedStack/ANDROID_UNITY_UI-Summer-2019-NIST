@@ -14,8 +14,8 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pathtracking_module
 c35752b81d25e001fee445da226f3c4e Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.Suspension
-33f36dc5a6ad2f104d63d0e3fb9ed616 Assembly-CSharp.dll:.Camera_controls
-25fea693863347e0e8577a24d0eedf3d Assembly-CSharp.dll:.Camera_orbit_around_model
+1f887a38ad227c540b30782c35bf412a Assembly-CSharp.dll:.Camera_controls
+62e91b45c7a3b3f54a574b259cdaebf1 Assembly-CSharp.dll:.Camera_orbit_around_model
 0df26d7642d4095bdac77a78b25e44a4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.BrakeLight
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Keylogger
 153887456e1e00f991f8edf9ce22151d Assembly-CSharp.dll:.LeftJoystick
@@ -161,6 +161,7 @@ a7d3c6c6948d99dd4116e659ddcf5ac4 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 787e2b9ae31dffd9c6c22a49250dbd1c Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.CarSelfRighting
 d611feb1d788a706efbdd00d345598ee Assembly-CSharp.dll:.RightJoystickTouchContoller
 16756866ef08c5c05c6229db9418c551 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Cameras.FreeLookCam
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Switch_scenes
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -208,7 +209,7 @@ ac0e5e8ccd6c031d45307738e1b2ad59 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 37a0eeee57781ba9dbc28d55d145b83e Assembly-CSharp-firstpass.dll:UnityVicon.SubjectScript
 a8796ecdc9d5c260bbe32f30c4b10708 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
 bfa389edc898bfba586cad59cb0ae31e Assembly-CSharp.dll:.GetFromServer
-50a2ea72d70dc6ada43b9ea8220dad97 Assembly-CSharp.dll:.Mouse_drag
+45e1110b04e73991c8ca56601c0fd431 Assembly-CSharp.dll:.Mouse_drag
 42bd018ee479065c49be2aff22eeea85 Assembly-CSharp.dll:TPC_Server.TCP_Server
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.rotate_towards_script
 153887456e1e00f991f8edf9ce22151d Assembly-CSharp.dll:.SingleJoystick
@@ -217,4 +218,3 @@ bfa389edc898bfba586cad59cb0ae31e Assembly-CSharp.dll:.GetFromServer
 5e67513f3a56a74df49b8177cbc8bf98 Assembly-CSharp.dll:.sendPose
 e2fb16282e1e50f371d517156ac5482f Assembly-CSharp.dll:.Enhanced_Feedback_UI
 ddc58044a9e91c4c316b7cea443f2827 Assembly-CSharp.dll:.DualJoystickTouchContoller
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Switch_scenes

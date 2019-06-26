@@ -37,16 +37,32 @@ public class Camera_controls : MonoBehaviour
     public float ScrollDampening = 6f;
     private float old_zoom; 
     public Slider zoom_amt; 
+
     void Start()
     {
         this._XForm_Camera = this.transform;
         this._XForm_Parent = this.transform.parent;
         zoom_amt.value = _CameraDistance;
         old_zoom = _CameraDistance;
+        zoom_amt.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+
+    }
+
+    void ValueChangeCheck()
+    {
+        _CameraDistance = zoom_amt.value; 
+        Quaternion QT = Quaternion.Euler(_LocalRotation.y, _LocalRotation.x, 0);
+        this._XForm_Parent.rotation = Quaternion.Lerp(this._XForm_Parent.rotation, QT, Time.deltaTime * OrbitDampening);
+
+        if (this._XForm_Camera.localPosition.z != this._CameraDistance * -1f)
+        {
+            this._XForm_Camera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(this._XForm_Camera.localPosition.z, this._CameraDistance * -1f, Time.deltaTime * ScrollDampening));
+        }
     }
 
 
-     // Update is called once per frame
+
+    // Update is called once per frame
     void LateUpdate()
     {
         //if ()
@@ -55,7 +71,7 @@ public class Camera_controls : MonoBehaviour
         //if (Input.GetMouseButton(1))
         //old_zoom = _CameraDistance;
         float slide_bar = zoom_amt.value;
-        if (Input.GetAxis("Fire2") != 0 || old_zoom != slide_bar)
+        if (Input.GetAxis("Fire2") != 0 )
         {
             _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
             _LocalRotation.y += Input.GetAxis("Mouse Y") * turn_speed;

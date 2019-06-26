@@ -14,7 +14,7 @@ public class CSV_writer : MonoBehaviour
     public string file_name;        //The file name being selected as a starting file to work with. 
     public Dropdown Dropdown_menu;  //UI element
     //All CSV files must go into the resources folder in order for Unity to find them
-    private string path = "C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/Resources";
+    //private string path = "C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/Resources";
     //The pathname where the CSV files are going to be stored
     List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
     // The literal data inside a CSV file
@@ -48,7 +48,7 @@ public class CSV_writer : MonoBehaviour
         //Write the header to the presently opened file and include its unique name. 
         try
         {
-            using (var sw = new StreamWriter(temp_name, true))
+            using (var sw = new StreamWriter(temp_name))
             {
                 var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4";
                 newLine +=    ",X,Y,Z,Q_X,Q_Y,Q_Z,Q_W";
@@ -59,6 +59,7 @@ public class CSV_writer : MonoBehaviour
         }
         catch
         {
+            Console.WriteLine("Could not write to file.");
             Debug.LogError("IO error encountered");
         }
 
@@ -68,7 +69,7 @@ public class CSV_writer : MonoBehaviour
     //Function to update the dropdown menu with all possible files in the CSV folder
     void update_list()
     {
-        var info = new DirectoryInfo(path);
+        var info = new DirectoryInfo(fix_path(""));
         //Calls in and dumps all the string names into an array
         var fileInfo = info.GetFiles();
         string_list.Clear(); 
@@ -108,11 +109,18 @@ public class CSV_writer : MonoBehaviour
     //Load in data from a csv and store for later use.
     public void load_data()
     {
-        string temp_path = "Android App - Intelligent Sys Div/Assets/CSV Files/";
-        data = CSVReader.Read(file_name);
+        //string temp_path = "Android App - Intelligent Sys Div/Assets/CSV Files/";
+        data = CSVReader.Read(fix_path(file_name));
+        //Console.WriteLine(data);
+
         update_list();
         counter = 0;
         max_limit = data.Count;
+        if(max_limit == 0)
+        {
+            Console.WriteLine("Warning: No data!");
+        }
+
     }
 
     //Phrase one line of data, returns one output_string block
@@ -171,21 +179,24 @@ public class CSV_writer : MonoBehaviour
         }
         catch
         {
+            Console.WriteLine("Could not write to file.");
             Debug.LogError("IO error encountered");
         }
     }
 
-    private string fix_path(string path)
+
+    
+    private string fix_path(string path_in)
     {
         #if UNITY_EDITOR
-                return Application.dataPath + "/Resources/" + path;
-        #elif UNITY_ANDROID
-                return Application.persistentDataPath+path;
-        #elif UNITY_IPHONE
-                return Application.persistentDataPath+"/"+path;
-        #else
-                return Application.dataPath +"/"+path;
-        #endif
+        return Application.dataPath + "/Resources/" + path_in;
+#elif UNITY_ANDROID
+                return Application.persistentDataPath + "/" +path_in;
+#elif UNITY_IPHONE
+                return Application.persistentDataPath + "/" +path_in;
+#else
+                return Application.dataPath +"/"+path_in;
+#endif
     }
 }
 
@@ -199,6 +210,8 @@ public class CSVReader
 
     public static List<Dictionary<string, object>> Read(string file)
     {
+
+#if UNITY_EDITOR
         file = file.Replace(".csv", "");
         Debug.Log(file);
         var list = new List<Dictionary<string, object>>();
@@ -240,8 +253,78 @@ public class CSVReader
             list.Add(entry);
         }
         return list;
+#elif UNITY_ANDROID
+        var list = new List<Dictionary<string, object>>();
+        string buffer_line = "";
+        try
+        {
+            // Create an instance of StreamReader to read from a file.
+            // The using statement also closes the StreamReader.
+            using (StreamReader sr = new StreamReader(file))
+            {
+                string line;
+                // Read and display lines from the file until the end of 
+                // the file is reached.
+                while ((line = sr.ReadLine()) != null)
+                {
+                    buffer_line += line;
+
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            // Let the user know what went wrong.
+            Console.WriteLine("The file could not be read:");
+            Console.WriteLine(e.Message);
+        }
+        Console.WriteLine("Final Msg: " + buffer_line);
+
+        //Debug.Log(data.ToString());
+        var lines = Regex.Split(buffer_line, LINE_SPLIT_RE);
+
+        if (lines.Length <= 1) return list;
+
+        var header = Regex.Split(lines[0], SPLIT_RE);
+
+
+        for (var i = 1; i < lines.Length; i++)
+        {
+
+            var values = Regex.Split(lines[i], SPLIT_RE);
+            if (values.Length == 0 || values[0] == "") continue;
+
+            var entry = new Dictionary<string, object>();
+            for (var j = 0; j < header.Length && j < values.Length; j++)
+            {
+                string value = values[j];
+                value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
+                object finalvalue = value;
+                int n;
+                float f;
+                if (int.TryParse(value, out n))
+                {
+                    finalvalue = n;
+                }
+                else if (float.TryParse(value, out f))
+                {
+                    finalvalue = f;
+                }
+                entry[header[j]] = finalvalue;
+            }
+            list.Add(entry);
+        }
+        return list;
+        
+#else
+        return var list = new List<Dictionary<string, object>>();    
+#endif
     }
 }
+
+
+
+
 
 
 //Debug.Log(data[counter]["X"]);

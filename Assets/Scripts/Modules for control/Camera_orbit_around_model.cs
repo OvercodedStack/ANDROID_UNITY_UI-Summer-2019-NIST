@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Camera_orbit_around_model : MonoBehaviour {
     GameObject anchor;
-    public Toggle UI_Button;
+    //public Toggle UI_Button;
     public string speed; 
 	// Use this for initialization
 	void Start () {
