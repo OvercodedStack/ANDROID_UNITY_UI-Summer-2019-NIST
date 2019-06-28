@@ -68,10 +68,14 @@ namespace TPC_Server
         {
             try
             {
-                // Create listener on localhost port 27000. 			
-                tcpListener = new TcpListener(IPAddress.Parse(IP_adress), Port_adress);
+                // Create listener on localhost port 27000. 	
+                Console.WriteLine(IP_adress);
+                //tcpListener = new TcpListener(IPAddress.Parse(IP_adress), Port_adress);
+                
+                tcpListener = new TcpListener(IPAddress.Any, Port_adress);
                 tcpListener.Start();
                 Debug.Log("Server is listening");
+                Console.WriteLine("Server started!");
                 Byte[] bytes = new Byte[1024];
                 while (true)
                 {
@@ -97,6 +101,7 @@ namespace TPC_Server
             }
             catch (SocketException socketException)
             {
+                Console.WriteLine("Server did not start!");
                 Debug.Log("SocketException " + socketException.ToString());
             }
         }
@@ -124,6 +129,7 @@ namespace TPC_Server
                     // Write byte array to socketConnection stream.               
                     stream.Write(serverMessageAsByteArray, 0, serverMessageAsByteArray.Length);
                     Debug.Log("Server sent his message - should be received by client");
+                    Console.WriteLine("Msg sent");
                 }
                 ///Debug.Log("Hi, I'm a job!");
             }

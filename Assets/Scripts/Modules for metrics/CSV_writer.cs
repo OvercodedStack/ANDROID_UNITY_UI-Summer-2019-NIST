@@ -48,7 +48,7 @@ public class CSV_writer : MonoBehaviour
         //Write the header to the presently opened file and include its unique name. 
         try
         {
-            using (var sw = new StreamWriter(temp_name))
+            using (var sw = new StreamWriter(temp_name,true))
             {
                 var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4";
                 newLine +=    ",X,Y,Z,Q_X,Q_Y,Q_Z,Q_W";
@@ -104,6 +104,11 @@ public class CSV_writer : MonoBehaviour
             recall_line();
             old_time = Time.time;
         }
+    }
+
+    public void change_csv_save()
+    {
+        temp_name = file_name;
     }
     
     //Load in data from a csv and store for later use.
@@ -210,7 +215,7 @@ public class CSVReader
 
     public static List<Dictionary<string, object>> Read(string file)
     {
-
+        /*
 #if UNITY_EDITOR
         file = file.Replace(".csv", "");
         Debug.Log(file);
@@ -253,7 +258,7 @@ public class CSVReader
             list.Add(entry);
         }
         return list;
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID*/
         var list = new List<Dictionary<string, object>>();
         string buffer_line = "";
         try
@@ -267,7 +272,8 @@ public class CSVReader
                 // the file is reached.
                 while ((line = sr.ReadLine()) != null)
                 {
-                    buffer_line += line;
+                    //Console.WriteLine(line);
+                    buffer_line += line + "\n";
 
                 }
             }
@@ -278,7 +284,7 @@ public class CSVReader
             Console.WriteLine("The file could not be read:");
             Console.WriteLine(e.Message);
         }
-        Console.WriteLine("Final Msg: " + buffer_line);
+        //Console.WriteLine("Final Msg: " + buffer_line);
 
         //Debug.Log(data.ToString());
         var lines = Regex.Split(buffer_line, LINE_SPLIT_RE);
@@ -315,10 +321,10 @@ public class CSVReader
             list.Add(entry);
         }
         return list;
-        
+        /*
 #else
         return var list = new List<Dictionary<string, object>>();    
-#endif
+#endif*/
     }
 }
 
