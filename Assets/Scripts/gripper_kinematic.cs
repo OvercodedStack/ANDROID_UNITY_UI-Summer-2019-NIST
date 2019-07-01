@@ -15,6 +15,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gripper_kinematic : MonoBehaviour {
     private GameObject gripper_left, gripper_right;
@@ -23,6 +24,7 @@ public class gripper_kinematic : MonoBehaviour {
     private float min_limit = 0.075f;
     //private VIVE_controller controller;
     private float grip_ratio = 0;
+    public Slider bar;
 
     // Use this for initialization
     void Start () {
@@ -39,7 +41,7 @@ public class gripper_kinematic : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        
+        grip_ratio = bar.value; 
         //Set a float that goes from 0.000 - 1.000
         //controller.get_ratio();
         update_grippers(grip_ratio);

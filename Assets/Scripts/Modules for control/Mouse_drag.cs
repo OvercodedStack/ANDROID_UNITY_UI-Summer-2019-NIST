@@ -18,15 +18,12 @@ using UnityEngine.UI;
 
 public class Mouse_drag : MonoBehaviour {
     public float distance;
-    public float additive_ratio = 1.0f;
+    public float additive_ratio = 30.0f;
     private Vector3 reset_position_vec;
     private Quaternion reset_orientation;
     public Toggle move_to_position;
     public GameObject indicator;
     public float speed = 3.0F;
-
-    public Button plus_but;
-    public Button min_but;
 
     void Start()
     {
@@ -37,7 +34,13 @@ public class Mouse_drag : MonoBehaviour {
 
     void Update()
     {
-
+        /*
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            selected = hit.transform.gameObject;
+        }*/
         if (move_to_position.isOn)
         {
             float step = speed * Time.deltaTime; 
@@ -47,35 +50,21 @@ public class Mouse_drag : MonoBehaviour {
     }
 
 
-    private void OnMouseDown()
-    {
-        distance = Vector3.Distance(this.transform.position,Camera.main.transform.position);
-    }
-
-
-    public Vector3 debug_vector;
-    private void OnMouseDrag()
-    {
-        Vector3 temp_pos = transform.position;
-
-        Vector3 mouse_pos = new Vector3(temp_pos.x +Input.mousePosition.x, temp_pos.y + Input.mousePosition.y, distance);
-        Vector3 obj_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
-
-        debug_vector = obj_pos;
-
-        transform.position = obj_pos; 
-    }
 
     //Put item further away
     public void plus_button()
     {
-        distance += additive_ratio;
+        //mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        //distance += additive_ratio;
+
+        transform.position = transform.position + (Camera.main.transform.forward * 0.75F);
     }
 
     //Put item closer away;
     public void sub_button()
     {
-        distance += -additive_ratio;
+        //distance += -additive_ratio;
+        transform.position = transform.position - (Camera.main.transform.forward * 0.75F);
     }
 
     void LateUpdate()

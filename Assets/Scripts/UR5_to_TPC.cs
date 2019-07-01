@@ -23,7 +23,7 @@ public class UR5_to_TPC : MonoBehaviour
                                 // {Angles};{Robot ID, gripper status, DO1, DO2, etc}; all in float
     TCP_Server server;
     ur5_kinematics angle_controller;
-    gripper_kinematic grip_obj;
+    public gripper_kinematic grip_obj;
     public GameObject robot;
     public Button send_msg;
     public bool enable_tcp_srv = true; 

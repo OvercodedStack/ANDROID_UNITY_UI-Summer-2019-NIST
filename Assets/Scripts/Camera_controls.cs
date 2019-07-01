@@ -36,7 +36,8 @@ public class Camera_controls : MonoBehaviour
     public float OrbitDampening = 10f;
     public float ScrollDampening = 6f;
     private float old_zoom; 
-    public Slider zoom_amt; 
+    public Slider zoom_amt;
+    public Toggle move_cam; 
 
     void Start()
     {
@@ -46,6 +47,7 @@ public class Camera_controls : MonoBehaviour
         old_zoom = _CameraDistance;
         zoom_amt.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
 
+        //transform.eulerAngles = new Vector3();
     }
 
     void ValueChangeCheck()
@@ -59,8 +61,6 @@ public class Camera_controls : MonoBehaviour
             this._XForm_Camera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(this._XForm_Camera.localPosition.z, this._CameraDistance * -1f, Time.deltaTime * ScrollDampening));
         }
     }
-
-
 
     // Update is called once per frame
     void LateUpdate()
@@ -82,19 +82,6 @@ public class Camera_controls : MonoBehaviour
             else if (_LocalRotation.y > 90f)
                 _LocalRotation.y = 90f;
 
-            //float hor = horizontal_speed * Input.GetAxis("Mouse Y");
-            //float ver = vertical_speed * Input.GetAxis("Mouse X");
-
-
-            //Clamp the y Rotation to horizon and not flipping over at the top
-            //if (this.transform.localRotation.eulerAngles.y < 0f)
-            //    hor = 0f;
-            //else if (this.transform.localRotation.eulerAngles.y > 90f)
-            //    hor = 0;
-
-            //transform.Rotate(hor, ver, 0);
-
-
             //if (Input.GetButton("LShift"))
             if (Input.GetAxis("Mouse ScrollWheel") != 0f)
             {
@@ -113,9 +100,6 @@ public class Camera_controls : MonoBehaviour
                 this._XForm_Camera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(this._XForm_Camera.localPosition.z, this._CameraDistance * -1f, Time.deltaTime * ScrollDampening));
             }
         }
-
-
-
 
         //Conditionals adjusted for camera viewset
         if (Input.GetButton("Foward"))
@@ -143,3 +127,17 @@ public class Camera_controls : MonoBehaviour
 
     }
 }
+
+
+
+            //float hor = horizontal_speed * Input.GetAxis("Mouse Y");
+            //float ver = vertical_speed * Input.GetAxis("Mouse X");
+
+
+            //Clamp the y Rotation to horizon and not flipping over at the top
+            //if (this.transform.localRotation.eulerAngles.y < 0f)
+            //    hor = 0f;
+            //else if (this.transform.localRotation.eulerAngles.y > 90f)
+            //    hor = 0;
+
+            //transform.Rotate(hor, ver, 0);

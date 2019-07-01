@@ -10,7 +10,8 @@ public class Camera_orbit_around_model : MonoBehaviour {
     public string speed; 
 	// Use this for initialization
 	void Start () {
-        anchor = GetComponent<GameObject>();   
+        anchor = GetComponent<GameObject>();
+        this.transform.eulerAngles = new Vector3(43, -30, 0);
 	}
 	
 	// Update is called once per frame

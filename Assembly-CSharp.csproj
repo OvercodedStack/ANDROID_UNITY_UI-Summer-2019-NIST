@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts Manus VR\Manus Interfacing\Manus_hand_obj.cs" />
      <Compile Include="Assets\Scripts Manus VR\Manus Interfacing\Manus_interpreter.cs" />
      <Compile Include="Assets\Scripts Manus VR\Manus Interfacing\ManusStruts.cs" />
+     <Compile Include="Assets\Scripts\Activate UI on Button.cs" />
      <Compile Include="Assets\Scripts\Camera_controls.cs" />
      <Compile Include="Assets\Scripts\Change_robots.cs" />
      <Compile Include="Assets\Scripts\Continously_dynamic_script.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Scripts\Modules for control\Joystick_control.cs" />
      <Compile Include="Assets\Scripts\Modules for control\Mouse_drag.cs" />
      <Compile Include="Assets\Scripts\Modules for control\Pathplanning_module.cs" />
+     <Compile Include="Assets\Scripts\Modules for control\rotator.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\CSV_writer.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\Keylogger.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\Pathtracking_module.cs" />
@@ -78,6 +80,7 @@
      <Compile Include="Assets\Scripts\TCP_scanner_and_selector_19.cs" />
      <Compile Include="Assets\Scripts\TCP_Server.cs" />
      <Compile Include="Assets\Scripts\TouchControl.cs" />
+     <Compile Include="Assets\Scripts\UI_enable_Menu.cs" />
      <Compile Include="Assets\Scripts\UR5_to_TPC.cs" />
      <Compile Include="Assets\TouchJoysticks\Scripts\DualJoystickPlayerController.cs" />
      <Compile Include="Assets\TouchJoysticks\Scripts\DualJoystickTouchContoller.cs" />
