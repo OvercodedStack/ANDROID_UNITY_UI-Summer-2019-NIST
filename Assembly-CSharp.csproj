@@ -77,6 +77,7 @@
      <Compile Include="Assets\Scripts\raycast_collision_19.cs" />
      <Compile Include="Assets\Scripts\rotate_towards_script.cs" />
      <Compile Include="Assets\Scripts\Switch_scenes.cs" />
+     <Compile Include="Assets\Scripts\TCP_Client.cs" />
      <Compile Include="Assets\Scripts\TCP_scanner_and_selector_19.cs" />
      <Compile Include="Assets\Scripts\TCP_Server.cs" />
      <Compile Include="Assets\Scripts\TouchControl.cs" />

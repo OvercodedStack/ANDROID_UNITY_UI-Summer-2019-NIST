@@ -48,6 +48,7 @@
             To support the ODG R7 in stereo mode we must add the following library.
         -->
         <uses-library android:name="com.osterhoutgroup.api.ext" android:required="false" />
+      <uses-permission android:name="android.permission.INTERNET" />
     </application>
 </manifest>
 
