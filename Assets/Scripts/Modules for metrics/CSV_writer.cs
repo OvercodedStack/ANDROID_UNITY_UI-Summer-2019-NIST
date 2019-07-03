@@ -61,8 +61,7 @@ public class CSV_writer : MonoBehaviour
         {
             using (var sw = new StreamWriter(temp_name,true))
             {
-                var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4,Bypass,X,Y,Z,Q_X,Q_Y,Q_Z,Q_W"; ;
-  
+                var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4,Bypass,Chng_Rbots,X,Y,Z,Q_X,Q_Y,Q_Z,Q_W"; 
                 sw.WriteLine(newLine);
                 sw.Flush();
             }
@@ -168,22 +167,8 @@ public class CSV_writer : MonoBehaviour
     //Best reference: https://www.youtube.com/watch?v=vDpww7HsdnM
     public void store_data()
     {
-
-
-
-
-
         try
         {
-
-
-
-
-
-
-
-
-
             using (var sw = new StreamWriter(temp_name,true))
             {
                 //Get the pose message being sent to robot. 
@@ -239,7 +224,7 @@ public class CSVReader
 
     public static List<Dictionary<string, object>> Read(string file)
     {
-        /*
+        
 #if UNITY_EDITOR
         file = file.Replace(".csv", "");
         Debug.Log(file);
@@ -282,7 +267,7 @@ public class CSVReader
             list.Add(entry);
         }
         return list;
-#elif UNITY_ANDROID*/
+#elif UNITY_ANDROID
         var list = new List<Dictionary<string, object>>();
         string buffer_line = "";
         try
@@ -345,10 +330,10 @@ public class CSVReader
             list.Add(entry);
         }
         return list;
-        /*
+        
 #else
         return var list = new List<Dictionary<string, object>>();    
-#endif*/
+#endif
     }
 }
 

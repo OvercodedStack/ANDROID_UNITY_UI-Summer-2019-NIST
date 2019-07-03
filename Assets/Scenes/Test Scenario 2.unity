@@ -19741,7 +19741,6 @@ GameObject:
   - component: {fileID: 1944879252}
   - component: {fileID: 1944879251}
   - component: {fileID: 1944879250}
-  - component: {fileID: 1944879259}
   m_Layer: 0
   m_Name: TCP_Server_node_Obj_coordinator
   m_TagString: Untagged
@@ -19784,6 +19783,8 @@ MonoBehaviour:
   robot: {fileID: 1506418032}
   send_msg: {fileID: 69746678}
   enable_tcp_srv: 1
+  manual_bypass: {fileID: 1645395367}
+  change_robots_bool: 0
   DO1: 0
   DO2: 0
   DO3: 0
@@ -19907,20 +19908,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1944879259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1944879249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25796d2d753a0a45a3f1762bba0f0d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IP_address: 169.254.152.2
-  port_num: 27001
-  delay_time: 2
 --- !u!1 &1951062824
 GameObject:
   m_ObjectHideFlags: 0

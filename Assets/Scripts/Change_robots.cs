@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Change_robots : MonoBehaviour {
     public bool change_robot;
     TCP_Server server;
+    UR5_to_TPC phraser;
     float old_time;
     public Image image;
     public string selected_robot;
@@ -19,8 +20,8 @@ public class Change_robots : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
- 
-        server = GetComponent<TCP_Server>();
+        phraser = GetComponent<UR5_to_TPC>();
+        server  = GetComponent<TCP_Server>();
         selected_robot = "None";
         change_robot = false;
         old_time = Time.time;
@@ -31,9 +32,12 @@ public class Change_robots : MonoBehaviour {
 
     void Update()
     {
+
+        //Using this variable to tell the phraser (CRPI) to change the currently selected robot. 
         if (!bypass_vic.isOn)
         {
             float now_time = Time.time;
+            phraser.change_robots_bool = change_robot;
             if (now_time > old_time + 5 && change_robot)
             {
                 change_robot = !change_robot;
@@ -56,7 +60,7 @@ public class Change_robots : MonoBehaviour {
         else
         {
             selected_robot = rbt_list[selc_value.value];
-
+            phraser.change_robots_bool = true;
         }
     }
 

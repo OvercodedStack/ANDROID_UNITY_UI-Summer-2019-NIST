@@ -28,6 +28,7 @@ public class UR5_to_TPC : MonoBehaviour
     public Button send_msg;
     public bool enable_tcp_srv = true;
     public Toggle manual_bypass;
+    public bool change_robots_bool;
 
     //TCP_scanner_and_selector_19 tcp_scan; 
 
@@ -88,7 +89,8 @@ public class UR5_to_TPC : MonoBehaviour
         output_string += decode_str(chgner.selected_robot);                 //Convert robot ID to known 
         output_string += add_gripper();                                     //Get the gripper status
         output_string += convert_booleans();                                //Get Digital output feedback
-        output_string += manual_bypass.isOn ? "1" : "0";
+        output_string += manual_bypass.isOn ? ",1" : ",0";                    //Choose to use Vicon or not
+        output_string += change_robots_bool ? ",1" : ",0";
         output_string += ";\n";
         server.set_msg(output_string);
     }
