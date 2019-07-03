@@ -8,13 +8,24 @@ using System.Text.RegularExpressions;
 using System.Text;
 
 
+/// <summary>
+/// This is a basic CSV file writer meant for writing out to files for later review. The process works by 
+/// starting out with a user-given name for which the user can use to apply to a file to store data through.
+/// 
+/// The user can also load up a file from a dropdown menu from previous recordings. 
+/// 
+/// 
+/// 
+/// 
+/// </summary>
+
+
 //Starts using code from https://shanemartin2797blog.wordpress.com/2015/11/20/how-to-read-from-and-write-to-csv-in-unity/
 public class CSV_writer : MonoBehaviour
 {
     public string file_name;        //The file name being selected as a starting file to work with. 
     public Dropdown Dropdown_menu;  //UI element
     //All CSV files must go into the resources folder in order for Unity to find them
-    //private string path = "C:/elwood.campus.nist.gov/735/users/ems9/My Documents/Manus VR Unity Folder - 2019/Android App - Intelligent Sys Div/Assets/Resources";
     //The pathname where the CSV files are going to be stored
     List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
     // The literal data inside a CSV file
@@ -29,7 +40,7 @@ public class CSV_writer : MonoBehaviour
     public Toggle toggle_recording;
     public Slider refresh_rate;
     public Toggle toggle_replay; 
-
+    
 
     //Get time from https://stackoverflow.com/questions/296920/how-do-you-get-the-current-time-of-day
     // Use this for initialization
@@ -50,8 +61,8 @@ public class CSV_writer : MonoBehaviour
         {
             using (var sw = new StreamWriter(temp_name,true))
             {
-                var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4";
-                newLine +=    ",X,Y,Z,Q_X,Q_Y,Q_Z,Q_W";
+                var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4,Bypass,X,Y,Z,Q_X,Q_Y,Q_Z,Q_W"; ;
+  
                 sw.WriteLine(newLine);
                 sw.Flush();
             }
@@ -62,7 +73,6 @@ public class CSV_writer : MonoBehaviour
             Console.WriteLine("Could not write to file.");
             Debug.LogError("IO error encountered");
         }
-
     }
 
     //https://answers.unity.com/questions/16433/get-list-of-all-files-in-a-directory.html
@@ -158,8 +168,22 @@ public class CSV_writer : MonoBehaviour
     //Best reference: https://www.youtube.com/watch?v=vDpww7HsdnM
     public void store_data()
     {
+
+
+
+
+
         try
         {
+
+
+
+
+
+
+
+
+
             using (var sw = new StreamWriter(temp_name,true))
             {
                 //Get the pose message being sent to robot. 

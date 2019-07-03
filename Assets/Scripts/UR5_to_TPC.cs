@@ -2,13 +2,13 @@
 //
 //  Original System: UR5_to_TPC.cs
 //  Subsystem:       Human-Robot Interaction
-//  Workfile:        Unity workspace?
-//  Revision:        1.0 - 6/29/2018
+//  Workfile:        Unity workspace
+//  Revision:        2.0 - 7/2/2019
 //  Author:          Esteban Segarra
 //
 //  Description
 //  ===========
-//  Data phraser from UR5 to TPC server. 
+//  Data phraser from UR5 to TPC server.  
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -20,14 +20,14 @@ using TPC_Server;
 public class UR5_to_TPC : MonoBehaviour
 {
     public string output_string;//Exports fully interpreted data in the following format
-                                // {Angles};{Robot ID, gripper status, DO1, DO2, etc}; all in float
+                                // {Angles};{Robot ID, gripper status, DO1, DO2, D03,D04, Bypass}; all in float
     TCP_Server server;
     ur5_kinematics angle_controller;
     public gripper_kinematic grip_obj;
     public GameObject robot;
     public Button send_msg;
-    public bool enable_tcp_srv = true; 
-
+    public bool enable_tcp_srv = true;
+    public Toggle manual_bypass;
 
     //TCP_scanner_and_selector_19 tcp_scan; 
 
@@ -39,10 +39,8 @@ public class UR5_to_TPC : MonoBehaviour
     public bool DO3 = false;
     public bool DO4 = false;
 
-     /// <summary>
-    /// Todo 
     /// Determine best approach to leading the data from the digital out port to the output string.
-    /// </summary>
+
 
     // Use this for initialization
     void Start()
@@ -58,13 +56,12 @@ public class UR5_to_TPC : MonoBehaviour
         send_msg.onClick.AddListener(add_active_state);
     }
 
-    ////Update is called once per frame
+    ////Update is called once per frame 
     void Update()
     {
-        if(enable_tcp_srv)
+        if (enable_tcp_srv)
             add_active_state();
     }
-
 
     string add_gripper()
     {
@@ -84,7 +81,6 @@ public class UR5_to_TPC : MonoBehaviour
         return digital_out;
     }
 
-
     void add_active_state()
     {
         output_string = convert_array(angle_controller.get_vector_UR5());   //Get the robot coordninates
@@ -92,6 +88,7 @@ public class UR5_to_TPC : MonoBehaviour
         output_string += decode_str(chgner.selected_robot);                 //Convert robot ID to known 
         output_string += add_gripper();                                     //Get the gripper status
         output_string += convert_booleans();                                //Get Digital output feedback
+        output_string += manual_bypass.isOn ? "1" : "0";
         output_string += ";\n";
         server.set_msg(output_string);
     }
@@ -119,9 +116,6 @@ public class UR5_to_TPC : MonoBehaviour
                 return "0,";
         }
     }
-
-
- 
 
     string convert_array(float[] array_in)
     {
