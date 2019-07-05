@@ -24,6 +24,8 @@ public class Camera_controls : MonoBehaviour
     protected float _CameraDistance = 10f;
     private Vector3 shift;
 
+    public Transform target_obj;
+    private Vector2 input;  
 
     //Speed Limits
     public float horizontal_speed = 1;
@@ -73,6 +75,10 @@ public class Camera_controls : MonoBehaviour
         float slide_bar = zoom_amt.value;
         if (Input.GetAxis("Fire2") != 0 )
         {
+            input += new Vector2(Input.GetAxis("Mouse X") * turn_speed, Input.GetAxis("Mouse Y") * turn_speed);
+            transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
+            transform.localPosition = target_obj.position - (transform.localRotation * Vector3.forward * _CameraDistance);
+            /*
             _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
             _LocalRotation.y += Input.GetAxis("Mouse Y") * turn_speed;
 
@@ -99,6 +105,7 @@ public class Camera_controls : MonoBehaviour
             {
                 this._XForm_Camera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(this._XForm_Camera.localPosition.z, this._CameraDistance * -1f, Time.deltaTime * ScrollDampening));
             }
+            */
         }
 
         //Conditionals adjusted for camera viewset

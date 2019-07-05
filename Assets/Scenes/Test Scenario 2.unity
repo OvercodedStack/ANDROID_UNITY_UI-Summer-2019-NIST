@@ -3129,6 +3129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f5fe51ede584c4689a0e545bed938e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target_obj: {fileID: 2117921636}
   horizontal_speed: 0.5
   vertical_speed: 0.5
   foward_speed: 0.5
@@ -3425,6 +3426,7 @@ GameObject:
   - component: {fileID: 324259500}
   - component: {fileID: 324259501}
   - component: {fileID: 324259506}
+  - component: {fileID: 324259507}
   m_Layer: 0
   m_Name: Y_axis_main
   m_TagString: Untagged
@@ -3547,6 +3549,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug_vector: {x: 0, y: 0, z: 0}
+--- !u!114 &324259507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 324259499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fb26c47729ffb429ad5d28c3828635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis_x: {fileID: 1046478808}
+  axis_y: {fileID: 418389443}
+  axis_z: {fileID: 118301800}
+  axis_rot_x: {fileID: 1378605523}
+  axis_rot_y: {fileID: 1880040788}
+  axis_rot_z: {fileID: 522091690}
+  cursr: {fileID: 826838320}
 --- !u!1 &335355389
 GameObject:
   m_ObjectHideFlags: 0
@@ -8716,7 +8736,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 26a6ffd433b32ba40951883e48a1c43c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15197,7 +15217,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1435639744}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 324259507}
+        m_MethodName: swap_modes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1435639744

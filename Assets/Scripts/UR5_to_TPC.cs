@@ -91,7 +91,7 @@ public class UR5_to_TPC : MonoBehaviour
         output_string += convert_booleans();                                //Get Digital output feedback
         output_string += manual_bypass.isOn ? ",1" : ",0";                    //Choose to use Vicon or not
         output_string += change_robots_bool ? ",1" : ",0";
-        output_string += ";\n";
+        output_string += ";#\n";
         server.set_msg(output_string);
     }
 
@@ -122,7 +122,7 @@ public class UR5_to_TPC : MonoBehaviour
     string convert_array(float[] array_in)
     {
         string output_str = null;
-        output_str += "UR5_pos:";
+        output_str += "$UR5_pos:";
         for (int i = 0; i < 6; i++)
         {
             output_str += array_in[i].ToString();
