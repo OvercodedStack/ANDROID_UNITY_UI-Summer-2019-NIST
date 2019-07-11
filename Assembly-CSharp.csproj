@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\Modules for control\Mouse_drag.cs" />
      <Compile Include="Assets\Scripts\Modules for control\Pathplanning_module.cs" />
      <Compile Include="Assets\Scripts\Modules for control\rotator.cs" />
+     <Compile Include="Assets\Scripts\Modules for control\Server_status_ui.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\CSV_writer.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\Keylogger.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\Pathtracking_module.cs" />

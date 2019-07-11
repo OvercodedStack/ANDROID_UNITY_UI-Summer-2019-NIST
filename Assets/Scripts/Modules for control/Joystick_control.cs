@@ -8,7 +8,8 @@ public class Joystick_control : MonoBehaviour {
     public RightJoystick r_joy;
     Button button;
     bool invert_axis;
-    public Slider spd_drg; 
+    public Slider spd_drg;
+    private float fine_adjustment = 0.15F; 
  
 
  	void LateUpdate () {
@@ -21,12 +22,12 @@ public class Joystick_control : MonoBehaviour {
         if (invert_axis)
         {
             transform.Rotate(l_vec.x, l_vec.y, 0);
-            transform.Translate(r_vec.x, r_vec.y, 0);
+            transform.Translate(r_vec.x * fine_adjustment, r_vec.y * fine_adjustment, 0);
         }
         else
         {
             transform.Rotate(0, l_vec.x, l_vec.y);
-            transform.Translate(0, r_vec.x, r_vec.y);
+            transform.Translate(0, r_vec.x * fine_adjustment, r_vec.y * fine_adjustment);
         }
 	}
 

@@ -13,6 +13,111 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Some Code inherited from https://forum.unity.com/threads/moving-main-camera-with-mouse.119525/
 //Scrolling and orbit inherited from https://www.youtube.com/watch?v=bVo0YLLO43s 
+
+//Latest version code - https://wiki.unity3d.com/index.php/MouseOrbitImproved
+
+using UnityEngine;
+using System.Collections;
+
+[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
+public class Camera_controls : MonoBehaviour
+{
+
+    public Transform target;
+    public float distance = 5.0f;
+    public float xSpeed = 120.0f;
+    public float ySpeed = 120.0f;
+    public float zoomSpeed = 4.0f;
+
+    public float yMinLimit = -20f;
+    public float yMaxLimit = 80f;
+
+    public float distanceMin = .5f;
+    public float distanceMax = 15f;
+
+    private Rigidbody rigidbody;
+
+    float x = 0.0f;
+    float y = 0.0f;
+
+    // Use this for initialization
+    void Start()
+    {
+        Vector3 angles = transform.eulerAngles;
+        x = angles.y;
+        y = angles.x;
+
+        rigidbody = GetComponent<Rigidbody>();
+
+        // Make the rigid body not change rotation
+        if (rigidbody != null)
+        {
+            rigidbody.freezeRotation = true;
+        }
+    }
+
+    Vector3 mouseOrigin;
+    private bool test_me = false;
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            mouseOrigin = Input.mousePosition;
+            test_me = true;
+        }
+        if (!Input.GetMouseButtonDown(2)) test_me = false;
+
+        if (test_me)
+        {
+            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - mouseOrigin);
+
+            Vector3 move = pos.y * zoomSpeed * transform.forward;
+            transform.Translate(move, Space.World);
+        }
+    }
+
+ 
+    void LateUpdate()
+    {
+       
+
+        if (target && Input.GetAxis("Fire2") != 0)
+        {
+            x += Input.touches[0].deltaPosition.x * xSpeed * distance * 0.02f;
+            y -= Input.touches[0].deltaPosition.y * ySpeed * 0.02f;
+
+            y = ClampAngle(y, yMinLimit, yMaxLimit);
+
+            Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+
+            RaycastHit hit;
+            if (Physics.Linecast(target.position, transform.position, out hit))
+            {
+                //distance -= hit.distance;
+            }
+            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            Vector3 position = rotation * negDistance + target.position;
+
+            transform.rotation = rotation;
+            transform.position = position;
+        }
+
+
+    }
+
+    public static float ClampAngle(float angle, float min, float max)
+    {
+        if (angle < -360F)
+            angle += 360F;
+        if (angle > 360F)
+            angle -= 360F;
+        return Mathf.Clamp(angle, min, max);
+    }
+}
+
+/*
 using UnityEngine;
 using UnityEngine.UI;
 public class Camera_controls : MonoBehaviour
@@ -32,7 +137,6 @@ public class Camera_controls : MonoBehaviour
     public float vertical_speed = 1;
     public float foward_speed = 1;
     public float turn_speed = 1; 
-    //public bool CameraDisabled = true;
  
     public float ScrollSensitvity = 2f;
     public float OrbitDampening = 10f;
@@ -41,6 +145,7 @@ public class Camera_controls : MonoBehaviour
     public Slider zoom_amt;
     public Toggle move_cam; 
 
+
     void Start()
     {
         this._XForm_Camera = this.transform;
@@ -48,10 +153,9 @@ public class Camera_controls : MonoBehaviour
         zoom_amt.value = _CameraDistance;
         old_zoom = _CameraDistance;
         zoom_amt.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
-
-        //transform.eulerAngles = new Vector3();
     }
 
+    //Check for a change in the direction of movment of the mouse against the screen 
     void ValueChangeCheck()
     {
         _CameraDistance = zoom_amt.value; 
@@ -75,10 +179,12 @@ public class Camera_controls : MonoBehaviour
         float slide_bar = zoom_amt.value;
         if (Input.GetAxis("Fire2") != 0 )
         {
-            input += new Vector2(Input.GetAxis("Mouse X") * turn_speed, Input.GetAxis("Mouse Y") * turn_speed);
-            transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
-            transform.localPosition = target_obj.position - (transform.localRotation * Vector3.forward * _CameraDistance);
-            /*
+            
+            //input += new Vector2(Input.GetAxis("Mouse X") * turn_speed, Input.GetAxis("Mouse Y") * turn_speed);
+           // transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
+            //transform.localPosition = target_obj.position - (transform.localRotation * Vector3.forward * _CameraDistance);
+            
+          
             _LocalRotation.x += Input.GetAxis("Mouse X") * turn_speed;
             _LocalRotation.y += Input.GetAxis("Mouse Y") * turn_speed;
 
@@ -105,7 +211,7 @@ public class Camera_controls : MonoBehaviour
             {
                 this._XForm_Camera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(this._XForm_Camera.localPosition.z, this._CameraDistance * -1f, Time.deltaTime * ScrollDampening));
             }
-            */
+            
         }
 
         //Conditionals adjusted for camera viewset
@@ -136,15 +242,15 @@ public class Camera_controls : MonoBehaviour
 }
 
 
+    */
+//float hor = horizontal_speed * Input.GetAxis("Mouse Y");
+//float ver = vertical_speed * Input.GetAxis("Mouse X");
 
-            //float hor = horizontal_speed * Input.GetAxis("Mouse Y");
-            //float ver = vertical_speed * Input.GetAxis("Mouse X");
 
+//Clamp the y Rotation to horizon and not flipping over at the top
+//if (this.transform.localRotation.eulerAngles.y < 0f)
+//    hor = 0f;
+//else if (this.transform.localRotation.eulerAngles.y > 90f)
+//    hor = 0;
 
-            //Clamp the y Rotation to horizon and not flipping over at the top
-            //if (this.transform.localRotation.eulerAngles.y < 0f)
-            //    hor = 0f;
-            //else if (this.transform.localRotation.eulerAngles.y > 90f)
-            //    hor = 0;
-
-            //transform.Rotate(hor, ver, 0);
+//transform.Rotate(hor, ver, 0);

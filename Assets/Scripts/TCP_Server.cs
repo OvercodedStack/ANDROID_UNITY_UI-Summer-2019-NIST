@@ -36,10 +36,13 @@ namespace TPC_Server
         [Range(0.1F, 20)]
         public float delay_time = 2.0F;
         private float last_call = 0.0F;
+        private const int MAX_RETRIES = 15;
+        public bool server_status;
 
         // Use this for initialization
         void Start()
         {
+            server_status = false; 
             // Start TcpServer background thread 		
             tcpListenerThread = new Thread(new ThreadStart(ListenForIncommingRequests));
             tcpListenerThread.IsBackground = true;
@@ -54,6 +57,11 @@ namespace TPC_Server
                 last_call = Time.time + delay_time;
                 SendMessage(IPC_comms_message);
             }
+        }
+
+        public string get_msg()
+        {
+            return IPC_output;
         }
 
         public void set_msg(string msg_out)
@@ -71,7 +79,8 @@ namespace TPC_Server
                 // Create listener on localhost port 27000. 	
                 Console.WriteLine(IP_adress);
                 //tcpListener = new TcpListener(IPAddress.Parse(IP_adress), Port_adress);
-                
+
+                counter = 0; 
                 tcpListener = new TcpListener(IPAddress.Any, Port_adress);
                 tcpListener.Start();
                 Debug.Log("Server is listening");
@@ -80,6 +89,7 @@ namespace TPC_Server
                 while (true)
                 {
                     connectedTcpClient = tcpListener.AcceptTcpClient();
+                    
                     {
                         // Get a stream object for reading 					
                         using (NetworkStream stream = connectedTcpClient.GetStream())
@@ -108,16 +118,27 @@ namespace TPC_Server
         /// <summary> 	
         /// Send message to client using socket connection. 	
         /// </summary> 	
+
+        private int counter; 
         private void SendMessage(string serverMessage)
         {
             if (connectedTcpClient == null)
             {
+                server_status = false; 
+                return;
+            }
+
+            if (counter >= MAX_RETRIES)
+            {
+                server_status = false;
+                counter = 0;
+                connectedTcpClient = null;
                 return;
             }
 
             try
             {
-
+                server_status = true;
                 // Get a stream object for writing. 			
                 NetworkStream stream = connectedTcpClient.GetStream();
                 if (stream.CanWrite)
@@ -130,8 +151,15 @@ namespace TPC_Server
                     stream.Write(serverMessageAsByteArray, 0, serverMessageAsByteArray.Length);
                     Debug.Log("Server sent his message - should be received by client");
                     Console.WriteLine("Msg sent");
+                    counter = 0; 
+                }
+                else if (!stream.CanWrite)
+                {
+                    counter++;
+                    Debug.Log("Skipping");
                 }
                 ///Debug.Log("Hi, I'm a job!");
+                ///
             }
             catch (SocketException socketException)
             {

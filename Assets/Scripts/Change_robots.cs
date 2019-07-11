@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+Simple script that allows the changing of the selected robot in the android application. Utilizes data adquired from the TCP server
+and displays the currently selected robot in the UI. 
+
+7/11/19 - Esteban Segarra M. 
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TPC_Server;
@@ -59,6 +66,7 @@ public class Change_robots : MonoBehaviour {
         }
         else
         {
+            output_text.text = server.get_msg();
             selected_robot = rbt_list[selc_value.value];
             phraser.change_robots_bool = true;
         }
