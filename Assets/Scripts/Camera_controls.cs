@@ -17,6 +17,7 @@
 //Latest version code - https://wiki.unity3d.com/index.php/MouseOrbitImproved
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
@@ -34,6 +35,10 @@ public class Camera_controls : MonoBehaviour
 
     public float distanceMin = .5f;
     public float distanceMax = 15f;
+
+    public float timeout_for_zoom =   0.5f;
+
+    public Slider zoom;
 
     private Rigidbody rigidbody;
 
@@ -60,6 +65,8 @@ public class Camera_controls : MonoBehaviour
     private bool test_me = false;
     void Update()
     {
+
+        //Use this code to determine when the user has clicked down on 
         if (Input.GetMouseButtonDown(0))
         {
             mouseOrigin = Input.mousePosition;
@@ -76,13 +83,23 @@ public class Camera_controls : MonoBehaviour
         }
     }
 
- 
+    float timeout_zoom;
+
+    bool change_in_slider; 
+
+    //Event-specific hack to detect when the user has moved the zoom bar
+    public void is_being_dragged()
+    {
+        change_in_slider = true; 
+    }
+
+    //When the user decides to double tap the screen, the movement across the screen is tracked and the camera is moved accordingly. Additional controls are in place to 
+    // allow the zoom function to operate smoothly as well (Note the timeout parameter) 
     void LateUpdate()
     {
-       
-
-        if (target && Input.GetAxis("Fire2") != 0)
+        if (target && Input.GetAxis("Fire2") != 0 || timeout_zoom + timeout_for_zoom > Time.time || change_in_slider == true)
         {
+            change_in_slider = false; 
             x += Input.touches[0].deltaPosition.x * xSpeed * distance * 0.02f;
             y -= Input.touches[0].deltaPosition.y * ySpeed * 0.02f;
 
@@ -90,13 +107,16 @@ public class Camera_controls : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
 
-            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+            //distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+            distance = zoom.value;
 
-            RaycastHit hit;
-            if (Physics.Linecast(target.position, transform.position, out hit))
+            //Allows a timeout functionality 
+            if (timeout_zoom + timeout_for_zoom < Time.time)
             {
-                //distance -= hit.distance;
+                timeout_zoom = Time.time; 
             }
+
+            //Vectors that allow the transformation of the camera in the world space
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             Vector3 position = rotation * negDistance + target.position;
 
@@ -107,6 +127,7 @@ public class Camera_controls : MonoBehaviour
 
     }
 
+    //Limits in place for the maximum angle the camera should look. 
     public static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360F)

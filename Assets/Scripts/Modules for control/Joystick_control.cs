@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//This class allows the user to rotate the end effector with the leftmost joystick and move the endeffector with the rightmost joystick
+//Pressing a button allows a transformation of the axis of change. 
 public class Joystick_control : MonoBehaviour {
     public LeftJoystick l_joy;
     public RightJoystick r_joy;

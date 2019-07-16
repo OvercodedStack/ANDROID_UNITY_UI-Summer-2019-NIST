@@ -1,4 +1,7 @@
 ﻿//Code Adopt from https://gist.github.com/danielbierwirth/0636650b005834204cb19ef5ae6ccedb
+//A key note is that this class ONLY specializes in being a server, no other functions other than getters and setters are here.
+//The server handles TCP strings incoming and outgoing. 
+
 
 using System;
 using System.Collections;

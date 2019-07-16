@@ -14,7 +14,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pathtracking_module
 c35752b81d25e001fee445da226f3c4e Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.Suspension
-3f67885e26fd23023926a93dd5559a49 Assembly-CSharp.dll:.Camera_controls
+e4c7bad58e71310a8e29e8d45ab0ddae Assembly-CSharp.dll:.Camera_controls
 62e91b45c7a3b3f54a574b259cdaebf1 Assembly-CSharp.dll:.Camera_orbit_around_model
 0df26d7642d4095bdac77a78b25e44a4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.BrakeLight
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Keylogger
@@ -219,7 +219,7 @@ f8c3315b77906460b4d57800e0d6948c Assembly-CSharp.dll:TPC_Server.TCP_Server
 153887456e1e00f991f8edf9ce22151d Assembly-CSharp.dll:.SingleJoystick
 5b61dea1382053910494b6002639776f Assembly-CSharp.dll:.Grapher1
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pathplanning_module
-a43242d459d2c6c5944f55f65a3a9533 Assembly-CSharp.dll:.rotator
+0da9874832b341b74362c1e89f81194b Assembly-CSharp.dll:.rotator
 5e67513f3a56a74df49b8177cbc8bf98 Assembly-CSharp.dll:.sendPose
 e2fb16282e1e50f371d517156ac5482f Assembly-CSharp.dll:.Enhanced_Feedback_UI
 ddc58044a9e91c4c316b7cea443f2827 Assembly-CSharp.dll:.DualJoystickTouchContoller

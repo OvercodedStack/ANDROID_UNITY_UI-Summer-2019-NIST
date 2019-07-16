@@ -54,6 +54,7 @@ public class Change_robots : MonoBehaviour {
             {
                 try
                 {
+                    //Depending on the object the ray hits, the name of that object is taken 
                     selected_robot = ray_caster.get_name();
 
                 }
@@ -61,6 +62,7 @@ public class Change_robots : MonoBehaviour {
                 {
                     selected_robot = "None";
                 }
+                //Output the results
                 output_text.text = selected_robot;
             }
         }
@@ -72,6 +74,8 @@ public class Change_robots : MonoBehaviour {
         }
     }
 
+
+    //UI-specific, shows when the timeout period is done. 
     public void change_state()
     {
         change_robot = !change_robot;

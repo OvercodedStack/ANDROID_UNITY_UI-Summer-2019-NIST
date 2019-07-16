@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TPC_Server;
 
+/// <summary>
+/// The purpose of this script is nothing more than to show the status of the server on a bar below. It should theorically determine if the server has a connected client or not. 
+/// </summary>
+
+
 public class Server_status_ui : MonoBehaviour {
     public Image img;
     public TCP_Server Server;
