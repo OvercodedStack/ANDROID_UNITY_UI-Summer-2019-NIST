@@ -10,6 +10,12 @@ using UnityEngine;
 public class rotator : MonoBehaviour { 
     private Vector3 mOffset;
     private float mZCoord;
+    private float x_limit = 6.75F;
+    private float y_limit = 6.75F;
+    private float y_low_limit = 0.85F; 
+    private float z_limit = 6.75F;
+    
+
 
     Quaternion init_quaternion;
     
@@ -78,7 +84,10 @@ public class rotator : MonoBehaviour {
             //Y axis transformations 
             case "Y_axis":
                 new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
-                transform.parent.position = new Vector3(transform.root.position.x, new_pos.y, transform.root.position.z);
+                if (new_pos.y < y_limit && new_pos.y > y_low_limit)
+                {
+                    transform.parent.position = new Vector3(transform.root.position.x, new_pos.y, transform.root.position.z);
+                } 
                 break;
 
                 //The Z-axis is a complicated matter as the user only has X and Y components. This one is faked by creating delta X and Y components 
@@ -87,10 +96,14 @@ public class rotator : MonoBehaviour {
                 {
                     break;
                 }
-                else if ((delta.x / Mathf.Abs(delta.x)) != 0)
+                else if ((delta.y / Mathf.Abs(delta.y)) != 0)
                 {
-                    transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z + -(delta.y / Mathf.Abs(delta.y)) * 0.2F);
-
+                    //To move from the Y dimension of the screen
+                    float checker = transform.root.position.z + -(delta.y / Mathf.Abs(delta.y)) * 0.2F;
+                    if (Mathf.Abs(checker) < x_limit)
+                    {
+                        transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, checker);
+                    }
                     break;
                 } 
 
@@ -99,15 +112,22 @@ public class rotator : MonoBehaviour {
                     break;
                 }else if ((delta.x / Mathf.Abs(delta.x)) != 0)
                 {
-                    transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z + -(delta.x / Mathf.Abs(delta.x)) * 0.2F);
-
+                    //To move from the X dimension of the screen
+                    float checker = transform.root.position.z + -(delta.x / Mathf.Abs(delta.x)) * 0.2F;
+                    if (Mathf.Abs(checker) < x_limit)
+                    {
+                        transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, checker);
+                    }
                     break;
                 }
                 break;
             //Case for when the user desires to move in the Z unity axis 
             case "Z_axis":
                 new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
-                transform.root.position = new Vector3(new_pos.x, transform.root.position.y, transform.root.position.z);
+                if (Mathf.Abs(new_pos.x) < x_limit  )
+                {
+                    transform.root.position = new Vector3(new_pos.x, transform.root.position.y, transform.root.position.z);
+                }
                 break;
             //Allows rotation in the Y-axis 
             case "Y_rot_axis":

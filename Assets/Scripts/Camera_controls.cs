@@ -23,6 +23,7 @@ using System.Collections;
 [AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class Camera_controls : MonoBehaviour
 {
+    public SingleJoystick trackpad;
 
     public Transform target;
     public float distance = 5.0f;
@@ -36,7 +37,7 @@ public class Camera_controls : MonoBehaviour
     public float distanceMin = .5f;
     public float distanceMax = 15f;
 
-    public float timeout_for_zoom =   0.5f;
+    public float timeout_for_zoom =   0.5F;
 
     public Slider zoom;
 
@@ -59,6 +60,7 @@ public class Camera_controls : MonoBehaviour
         {
             rigidbody.freezeRotation = true;
         }
+        timeout_zoom = Time.time; 
     }
 
     Vector3 mouseOrigin;
@@ -97,7 +99,11 @@ public class Camera_controls : MonoBehaviour
     // allow the zoom function to operate smoothly as well (Note the timeout parameter) 
     void LateUpdate()
     {
-        if (target && Input.GetAxis("Fire2") != 0 || timeout_zoom + timeout_for_zoom > Time.time || change_in_slider == true)
+        Vector3 dir = trackpad.GetInputDirection() * 0.5F;
+
+
+
+        if (target && Input.GetAxis("Fire2") != 0 || change_in_slider == true || dir.x > 0)
         {
             change_in_slider = false; 
             x += Input.touches[0].deltaPosition.x * xSpeed * distance * 0.02f;
@@ -122,9 +128,29 @@ public class Camera_controls : MonoBehaviour
 
             transform.rotation = rotation;
             transform.position = position;
+
+            //assuming we only using the single camera:
+            var camera = Camera.main;
+
+            //camera forward and right vectors:
+            var forward = camera.transform.forward;
+            var right = camera.transform.right;
+
+            //project forward and right vectors on the horizontal plane (y = 0)
+            forward.y = 0f;
+            right.y = 0f;
+            forward.Normalize();
+            right.Normalize();
+
+            //this is the direction in the world space we want to move:
+            var desiredMoveDirection = forward * dir.x + right * dir.y;
+
+            //now we can apply the movement:
+            target.transform.Translate(desiredMoveDirection * Time.deltaTime);
+           
+
         }
-
-
+      
     }
 
     //Limits in place for the maximum angle the camera should look. 

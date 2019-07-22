@@ -14,7 +14,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pathtracking_module
 c35752b81d25e001fee445da226f3c4e Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.Suspension
-e4c7bad58e71310a8e29e8d45ab0ddae Assembly-CSharp.dll:.Camera_controls
+fafaa1fd2b65670aaddb0b615c512216 Assembly-CSharp.dll:.Camera_controls
 62e91b45c7a3b3f54a574b259cdaebf1 Assembly-CSharp.dll:.Camera_orbit_around_model
 0df26d7642d4095bdac77a78b25e44a4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.BrakeLight
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Keylogger
@@ -56,7 +56,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 c818adf915a2106175fb8c1115302db9 Assembly-CSharp.dll:.TCP_scanner_and_selector_19
 dd5481137759597d614818793c90a7fe Assembly-CSharp.dll:.Drag
 8e9f5b922979e9356a11d2ee2b32ee60 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TiltInput
-f38eb1b06eac0b4eff202d873d11e840 Assembly-CSharp.dll:.UR5_to_TPC
+e67b1e180ec63e8a5d98a5c834cd3ce4 Assembly-CSharp.dll:.UR5_to_TPC
 09fdd667695af07ed3888c23a7fd6be5 Assembly-CSharp.dll:.CopyModel
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -126,6 +126,7 @@ a0b22e1ff2daafe87ce4a9baa41bcedf Assembly-CSharp.dll:.RightJoystickPlayerControl
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 0c1785287628289558a721a62ea5a480 Assembly-CSharp.dll:.ServerTextControl
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.CarUserControl
+9a488507fd321bc57cc1822f9c8ca19b Assembly-CSharp.dll:.Trackpoint
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 3989eafef2b1c92f53e40559354d2eb8 Assembly-CSharp.dll:.Show_hide_axis
 579e2597268bc7d92f5d353e5c41b2ae Assembly-CSharp.dll:.TouchControl
@@ -137,6 +138,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+a82f1d77b3343c1e19fd0df0f0dfede3 Assembly-CSharp.dll:.ShowGameObject
 69f05d94227d8676c14071b3dbe1b417 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Aeroplane.AeroplaneController
 0ed30cd5782c30cef41137535cc1c4c7 Assembly-CSharp.dll:.Change_robots
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Continously_dynamic_script
@@ -183,6 +185,7 @@ ecfb923fb29f3a0959a3c2a2105bb71f Assembly-CSharp.dll:.raycast_collision_19
 9bcb92ce4a0c3f44f0a35e1d8f16eae1 Assembly-CSharp.dll:.RotateJoints
 f42dd6bdf1a9528be1b597944d71b589 Assembly-CSharp.dll:.Dynamic_Mesh_Collider
 48718eef89369acea1a78774e6908099 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Cameras.TargetFieldOfView
+28f77ad8c4e17b79dc84a04cf2c9aa8c Assembly-CSharp.dll:.UI_Image_indicator
 6a8f6cb74366ddbc38d6fe979d91cfe4 Assembly-CSharp-firstpass.dll:UnityVicon.RBScript
 aed7a093a3c9b018fe2666f3d94c06d5 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Cameras.HandHeldCam
 0afbef59df7a9fa9f3fef07dbd3bd833 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Aeroplane.AeroplanePropellerAnimator

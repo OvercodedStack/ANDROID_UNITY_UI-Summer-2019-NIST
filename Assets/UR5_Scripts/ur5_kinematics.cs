@@ -53,6 +53,12 @@ public class ur5_kinematics : MonoBehaviour
 
     Matrix<float> robotTheta_filt;
 
+    public void toggle_enabled()
+    {
+        enabled = !enabled;
+    }
+
+
     // Use this for initialization
     void Start()
     {
@@ -101,6 +107,8 @@ public class ur5_kinematics : MonoBehaviour
 
         // Display in text field
         outputText.text = robotTheta_filt.Column(0).Multiply((180f / Mathf.PI)).ToVectorString("0.0  ");
+
+
     }
 
 
@@ -114,8 +122,6 @@ public class ur5_kinematics : MonoBehaviour
 
 
     //  Called when go-to-IK button (SPHERE) is clicked
-    //void TaskOnClick3()
-
     void Update()
     {
         /*The ever-more mysterious IK method. Use with caution. Method confirmed to only work with UR5 model located at origin with some offset to base.
@@ -185,7 +191,12 @@ public class ur5_kinematics : MonoBehaviour
             }
 
             outputText.text = matrix_thetha.Column(0).Multiply((180f / Mathf.PI)).ToVectorString("0.0  ");
+        }else
+        {
+            angle_vector = controller.getJointValues();
         }
+
+
     }
 
     void locate_real_world_pt(Matrix<float> fwd_kin_mat)
@@ -240,8 +251,6 @@ public class ur5_kinematics : MonoBehaviour
         return angle_vector;
 
     }
-
-
 
 
 

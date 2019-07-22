@@ -16,6 +16,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TPC_Server;
+using System.Collections.Generic;
 
 public class UR5_to_TPC : MonoBehaviour
 {
@@ -30,8 +31,11 @@ public class UR5_to_TPC : MonoBehaviour
     public Toggle manual_bypass;
     public bool change_robots_bool;
 
-    //TCP_scanner_and_selector_19 tcp_scan; 
-
+    //========Options for the digital out dropdown menu
+    public Dropdown digital_out_menu;
+    List<string> string_list = new List<string>() {"Digital out 1", "Digital out 2" , "Digital out 3" , "Digital out 4" };
+    private string current_selected;
+    public Image indicator; 
     Change_robots chgner;                   //Contains the data required for determining robot type
     
     gripper_kinematic grip_status;          //It's a float variable between 0 and 1; 
@@ -41,7 +45,6 @@ public class UR5_to_TPC : MonoBehaviour
     public bool DO4 = false;
 
     /// Determine best approach to leading the data from the digital out port to the output string.
-
 
     // Use this for initialization
     void Start()
@@ -55,13 +58,70 @@ public class UR5_to_TPC : MonoBehaviour
         //GameObject robot = GameObject.Find("UR5");
         angle_controller = robot.GetComponent<ur5_kinematics>();
         send_msg.onClick.AddListener(add_active_state);
+
+        //Digital Menu for 
+        digital_out_menu.ClearOptions();
+        digital_out_menu.AddOptions(string_list);
     }
 
     ////Update is called once per frame 
     void Update()
     {
+        bool temp_bool = false;
+        current_selected = string_list[digital_out_menu.value];
+
         if (enable_tcp_srv)
             add_active_state();
+
+        switch (current_selected)
+        {
+            case "Digital out 1":
+                temp_bool = DO1;
+                break;
+            case "Digital out 2":
+                temp_bool = DO2;
+                break;
+            case "Digital out 3":
+                temp_bool = DO3;
+                break;
+            case "Digital out 4":
+                temp_bool = DO4;
+                break;
+        }
+
+        if (temp_bool)
+        {
+            indicator.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
+        }
+        else
+        {
+            indicator.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+        }
+    }
+
+    //This is a public method for a button to use. USE THIS INSTEAD OF IMPORTING A BUTTON OBJECT
+    public void toggle_DO_button()
+    {
+        bool temp_bool;
+        switch (current_selected)
+        {
+            case "Digital out 1":
+                DO1 = !DO1;
+                temp_bool = DO1;
+                break;
+            case "Digital out 2":
+                DO2 = !DO2;
+                temp_bool = DO2;
+                break;
+            case "Digital out 3":
+                DO3 = !DO3;
+                temp_bool = DO3;
+                break;
+            case "Digital out 4":
+                DO4 = !DO4;
+                temp_bool = DO4;
+                break;
+        }
     }
 
     string add_gripper()
