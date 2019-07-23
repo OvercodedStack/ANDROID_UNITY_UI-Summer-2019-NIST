@@ -12,12 +12,10 @@ public class rotator : MonoBehaviour {
     private float mZCoord;
     private float x_limit = 6.75F;
     private float y_limit = 6.75F;
-    private float y_low_limit = 0.85F; 
+    private float y_low_limit = 1.2F; 
     private float z_limit = 6.75F;
-    
-
-
-    Quaternion init_quaternion;
+    public GameObject target_object; 
+    private Quaternion init_quaternion;
     
     //Initialize to locate the starting angle
     void Start()
@@ -49,8 +47,7 @@ public class rotator : MonoBehaviour {
 
     void Update()
     {
-        //transform.localRotation = init_quaternion;
-
+        transform.root.position = target_object.transform.position; 
 
         //This section allows the program to determine the raw delta values for the mouse position changes
         if (Input.GetMouseButtonDown(0))
@@ -79,14 +76,15 @@ public class rotator : MonoBehaviour {
         {
             //Allows freeform movement in the world
             case "Control_pt":
-                transform.parent.position = mouse_world_pos + mOffset;
+                //transform.parent.position = mouse_world_pos + mOffset;
+                target_object.transform.position = mouse_world_pos + mOffset;
                 break;
             //Y axis transformations 
             case "Y_axis":
                 new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
                 if (new_pos.y < y_limit && new_pos.y > y_low_limit)
                 {
-                    transform.parent.position = new Vector3(transform.root.position.x, new_pos.y, transform.root.position.z);
+                    target_object.transform.position = new Vector3(transform.root.position.x, new_pos.y, transform.root.position.z);
                 } 
                 break;
 
@@ -102,7 +100,7 @@ public class rotator : MonoBehaviour {
                     float checker = transform.root.position.z + -(delta.y / Mathf.Abs(delta.y)) * 0.2F;
                     if (Mathf.Abs(checker) < x_limit)
                     {
-                        transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, checker);
+                       target_object.transform.position = new Vector3(transform.root.position.x, transform.root.position.y, checker);
                     }
                     break;
                 } 
@@ -116,7 +114,7 @@ public class rotator : MonoBehaviour {
                     float checker = transform.root.position.z + -(delta.x / Mathf.Abs(delta.x)) * 0.2F;
                     if (Mathf.Abs(checker) < x_limit)
                     {
-                        transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, checker);
+                        target_object.transform.position = new Vector3(transform.root.position.x, transform.root.position.y, checker);
                     }
                     break;
                 }
@@ -126,7 +124,7 @@ public class rotator : MonoBehaviour {
                 new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
                 if (Mathf.Abs(new_pos.x) < x_limit  )
                 {
-                    transform.root.position = new Vector3(new_pos.x, transform.root.position.y, transform.root.position.z);
+                    target_object.transform.position = new Vector3(new_pos.x, transform.root.position.y, transform.root.position.z);
                 }
                 break;
             //Allows rotation in the Y-axis 
@@ -135,8 +133,8 @@ public class rotator : MonoBehaviour {
                 {
                     break;
                 }
-                Vector3 temp = new Vector3(transform.root.eulerAngles.x, transform.root.eulerAngles.y + (delta.y / Mathf.Abs(delta.y)), transform.root.eulerAngles.z);
-                transform.root.eulerAngles = temp;
+                Vector3 temp = new Vector3(target_object.transform.eulerAngles.x, target_object.transform.root.eulerAngles.y + (delta.y / Mathf.Abs(delta.y)), target_object.transform.eulerAngles.z);
+                target_object.transform.eulerAngles = temp;
                 
                 break;
             //Allows rotation in the Z axis 
@@ -145,7 +143,7 @@ public class rotator : MonoBehaviour {
                 {
                     break;
                 }
-                transform.root.eulerAngles = new Vector3(transform.root.eulerAngles.x, transform.root.eulerAngles.y, transform.root.eulerAngles.z + (delta.x / Mathf.Abs(delta.x)));
+                target_object.transform.eulerAngles = new Vector3(target_object.transform.eulerAngles.x, target_object.transform.eulerAngles.y, target_object.transform.eulerAngles.z + (delta.x / Mathf.Abs(delta.x)));
                 break;
 
             //Allows rotation in the X axis 
@@ -154,10 +152,14 @@ public class rotator : MonoBehaviour {
                 {
                     break;
                 }
-                transform.root.eulerAngles = new Vector3(transform.root.eulerAngles.x + delta.y / Mathf.Abs(delta.y), transform.root.eulerAngles.y, transform.root.eulerAngles.z);
+                target_object.transform.eulerAngles = new Vector3(target_object.transform.eulerAngles.x + delta.y / Mathf.Abs(delta.y), target_object.transform.eulerAngles.y, target_object.transform.eulerAngles.z);
                 break;
             default:
                 break;
         }
     }
+
+
+
+
 }
