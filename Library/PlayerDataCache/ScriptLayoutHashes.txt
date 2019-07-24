@@ -130,7 +130,7 @@ a0b22e1ff2daafe87ce4a9baa41bcedf Assembly-CSharp.dll:.RightJoystickPlayerControl
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 3989eafef2b1c92f53e40559354d2eb8 Assembly-CSharp.dll:.Show_hide_axis
 579e2597268bc7d92f5d353e5c41b2ae Assembly-CSharp.dll:.TouchControl
-434d983cdb2b9ff71af62e27cdb70c1b Assembly-CSharp.dll:.Joystick_control
+e405aa1ab0ccbfc82aa31cebdb9bc381 Assembly-CSharp.dll:.Joystick_control
 c7790408002dd6c0c359a055959ef579 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Aeroplane.AeroplaneAudio
 a638a53309cc09ae02316b499365bd44 Assembly-CSharp.dll:.Server_status_ui
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -222,7 +222,7 @@ f8c3315b77906460b4d57800e0d6948c Assembly-CSharp.dll:TPC_Server.TCP_Server
 153887456e1e00f991f8edf9ce22151d Assembly-CSharp.dll:.SingleJoystick
 5b61dea1382053910494b6002639776f Assembly-CSharp.dll:.Grapher1
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pathplanning_module
-0da9874832b341b74362c1e89f81194b Assembly-CSharp.dll:.rotator
+c9603fff0b5e2f17216fc56e01fc3345 Assembly-CSharp.dll:.rotator
 5e67513f3a56a74df49b8177cbc8bf98 Assembly-CSharp.dll:.sendPose
 e2fb16282e1e50f371d517156ac5482f Assembly-CSharp.dll:.Enhanced_Feedback_UI
 ddc58044a9e91c4c316b7cea443f2827 Assembly-CSharp.dll:.DualJoystickTouchContoller

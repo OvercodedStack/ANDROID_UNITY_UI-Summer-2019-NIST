@@ -13,6 +13,8 @@ public class Joystick_control : MonoBehaviour {
     bool invert_axis;
     public Slider spd_drg;
     private float fine_adjustment = 0.15F; 
+    public Image XZ_translation;
+    public Image Y_translation;
  
 
  	void LateUpdate () {
@@ -24,13 +26,17 @@ public class Joystick_control : MonoBehaviour {
 
         if (invert_axis)
         {
-            transform.Rotate(l_vec.x, l_vec.y, 0);
-            transform.Translate(r_vec.x * fine_adjustment, r_vec.y * fine_adjustment, 0);
+            transform.Rotate(l_vec.x, 0, l_vec.y);
+            transform.Translate(r_vec.x * fine_adjustment,0, r_vec.y * fine_adjustment);
+            XZ_translation.gameObject.SetActive(true);
+            Y_translation.gameObject.SetActive(false);
         }
         else
         {
-            transform.Rotate(0, l_vec.x, l_vec.y);
-            transform.Translate(0, r_vec.x * fine_adjustment, r_vec.y * fine_adjustment);
+            transform.Rotate(0,l_vec.y,0);
+            transform.Translate(0, r_vec.y * fine_adjustment,0);
+            Y_translation.gameObject.SetActive(true);
+            XZ_translation.gameObject.SetActive(false);
         }
 	}
 

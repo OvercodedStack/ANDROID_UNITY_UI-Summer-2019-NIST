@@ -4,11 +4,12 @@
 //  Subsystem:       Human-Robot Interaction
 //  Workfile:        Manus_Open_VR V2
 //  Revision:        1.0 - 6/22/2018
+//                   2.0 - 7/23/2019                     
 //  Author:          Esteban Segarra
 //
 //  Description
 //  ===========
-//  Wrapper to move gameobjects in-game
+//  Wrapper to move gameobjects in-game. This script is legacy and superceded by rotator.cs. 
 //
 ///////////////////////////////////////////////////////////////////////////////
 using System.Collections;

@@ -11,7 +11,7 @@ public class rotator : MonoBehaviour {
     private Vector3 mOffset;
     private float mZCoord;
     private float x_limit = 6.75F;
-    private float y_limit = 6.75F;
+    private float y_limit = 8.0F;
     private float y_low_limit = 1.2F; 
     private float z_limit = 6.75F;
     public GameObject target_object; 
@@ -49,7 +49,8 @@ public class rotator : MonoBehaviour {
     {
         transform.root.position = target_object.transform.position; 
 
-        //This section allows the program to determine the raw delta values for the mouse position changes
+        //This section allows the program to determine the raw delta values for the mouse position changes.
+        //This information is used for simulating the Z axis in Unity. 
         if (Input.GetMouseButtonDown(0))
         {
             lastPos = Input.mousePosition;
@@ -81,7 +82,8 @@ public class rotator : MonoBehaviour {
                 break;
             //Y axis transformations 
             case "Y_axis":
-                new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
+                //new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
+                new_pos = mouse_world_pos + mOffset; 
                 if (new_pos.y < y_limit && new_pos.y > y_low_limit)
                 {
                     target_object.transform.position = new Vector3(transform.root.position.x, new_pos.y, transform.root.position.z);
@@ -121,7 +123,8 @@ public class rotator : MonoBehaviour {
                 break;
             //Case for when the user desires to move in the Z unity axis 
             case "Z_axis":
-                new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
+                //new_pos = Camera.main.ScreenToWorldPoint(mouse_pos);
+                new_pos = mouse_world_pos + mOffset;
                 if (Mathf.Abs(new_pos.x) < x_limit  )
                 {
                     target_object.transform.position = new Vector3(new_pos.x, transform.root.position.y, transform.root.position.z);

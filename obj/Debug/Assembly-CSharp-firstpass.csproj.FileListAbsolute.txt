@@ -38,3 +38,4 @@ C:\elwood.campus.nist.gov\735\users\ems9\My Documents\Manus VR Unity Folder - 20
 C:\elwood.campus.nist.gov\735\users\ems9\My Documents\Manus VR Unity Folder - 2019\Android App - Intelligent Sys Div\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 C:\elwood.campus.nist.gov\735\users\ems9\My Documents\Manus VR Unity Folder - 2019\Android App - Intelligent Sys Div\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\elwood.campus.nist.gov\735\users\ems9\My Documents\Manus VR Unity Folder - 2019\Android App - Intelligent Sys Div\obj\Debug\Assembly-CSharp-firstpass.pdb
+C:\elwood.campus.nist.gov\735\users\ems9\My Documents\Manus VR Unity Folder - 2019\Android App - Intelligent Sys Div\Temp\bin\Debug\ViconDataStreamSDK_CSharp.dll

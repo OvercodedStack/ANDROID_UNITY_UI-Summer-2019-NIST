@@ -33,7 +33,7 @@ public class UR5_to_TPC : MonoBehaviour
 
     //========Options for the digital out dropdown menu
     public Dropdown digital_out_menu;
-    List<string> string_list = new List<string>() {"Digital out 1", "Digital out 2" , "Digital out 3" , "Digital out 4" };
+    List<string> string_list = new List<string>() {"Gripper", "Lamp Status" , "Digital out 3" , "Digital out 4" };
     private string current_selected;
     public Image indicator; 
     Change_robots chgner;                   //Contains the data required for determining robot type
@@ -75,10 +75,10 @@ public class UR5_to_TPC : MonoBehaviour
 
         switch (current_selected)
         {
-            case "Digital out 1":
+            case "Gripper":
                 temp_bool = DO1;
                 break;
-            case "Digital out 2":
+            case "Lamp Status":
                 temp_bool = DO2;
                 break;
             case "Digital out 3":
@@ -105,11 +105,11 @@ public class UR5_to_TPC : MonoBehaviour
         bool temp_bool;
         switch (current_selected)
         {
-            case "Digital out 1":
+            case "Gripper":
                 DO1 = !DO1;
                 temp_bool = DO1;
                 break;
-            case "Digital out 2":
+            case "Lamp Status":
                 DO2 = !DO2;
                 temp_bool = DO2;
                 break;
