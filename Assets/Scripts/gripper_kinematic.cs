@@ -39,6 +39,21 @@ public class gripper_kinematic : MonoBehaviour {
         grip_ratio = val; 
     }
 
+    //This function is to be toggled directly by a unity button as a click event in its settings. 
+    public void toggle_gripper_override()
+    {
+        if (grip_ratio == 0)
+        {
+            grip_ratio = 1;
+        }
+        else
+        {
+            grip_ratio = 0; 
+        }
+
+    }
+
+
 	// Update is called once per frame
 	void Update () {
         grip_ratio = bar.value; 

@@ -29,7 +29,7 @@ public class Change_robots : MonoBehaviour {
     void Start() {
         phraser = GetComponent<UR5_to_TPC>();
         server  = GetComponent<TCP_Server>();
-        selected_robot = "None";
+        selected_robot = "No robot selected";
         change_robot = false;
         old_time = Time.time;
         image.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
