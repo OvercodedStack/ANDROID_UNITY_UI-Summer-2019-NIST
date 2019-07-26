@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+//This is a very simple script to activate or deactive UI elements. This works simply by enabling and disabling the gameobject thus giving the 
+//illusion that it's being hidden or shown. 
+
+//To apply for the use of on a UI, simply place this component onto a gameobject, use a button OnClick() event, and find the public function "hide or show()" 
+
 public class MenuAppearScript : MonoBehaviour
 {
 

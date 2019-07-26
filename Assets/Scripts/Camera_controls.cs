@@ -46,6 +46,9 @@ public class Camera_controls : MonoBehaviour
     float x = 0.0f;
     float y = 0.0f;
 
+    private Vector3     starting_pos;
+    private Quaternion  starting_rot; 
+
     // Use this for initialization
     void Start()
     {
@@ -60,8 +63,19 @@ public class Camera_controls : MonoBehaviour
         {
             rigidbody.freezeRotation = true;
         }
-        timeout_zoom = Time.time; 
+
+        starting_pos = target.transform.position;
+        starting_rot = target.transform.rotation;
     }
+
+
+    //Use this method in combination with a OnClick() button to reset the camera position. 
+    public void button_reset_position_and_rotation()
+    {
+        target.transform.position = starting_pos;
+        target.transform.rotation = starting_rot;
+    }
+
 
     Vector3 mouseOrigin;
     private bool test_me = false;
@@ -74,6 +88,9 @@ public class Camera_controls : MonoBehaviour
             mouseOrigin = Input.mousePosition;
             test_me = true;
         }
+
+        
+        //Old code that was meant for use to move around using the middle mouse functionality with the camera position. 
         if (!Input.GetMouseButtonDown(2)) test_me = false;
 
         if (test_me)
@@ -83,9 +100,8 @@ public class Camera_controls : MonoBehaviour
             Vector3 move = pos.y * zoomSpeed * transform.forward;
             transform.Translate(move, Space.World);
         }
+        
     }
-
-    float timeout_zoom;
 
     bool change_in_slider; 
 
@@ -100,9 +116,6 @@ public class Camera_controls : MonoBehaviour
     void LateUpdate()
     {
         Vector3 dir = trackpad.GetInputDirection() * 0.5F;
-
-
-
         if (target && Input.GetAxis("Fire2") != 0 || change_in_slider == true || dir.x > 0)
         {
             change_in_slider = false; 
@@ -115,12 +128,6 @@ public class Camera_controls : MonoBehaviour
 
             //distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
             distance = zoom.value;
-
-            //Allows a timeout functionality 
-            if (timeout_zoom + timeout_for_zoom < Time.time)
-            {
-                timeout_zoom = Time.time; 
-            }
 
             //Vectors that allow the transformation of the camera in the world space
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
@@ -156,6 +163,7 @@ public class Camera_controls : MonoBehaviour
     //Limits in place for the maximum angle the camera should look. 
     public static float ClampAngle(float angle, float min, float max)
     {
+
         if (angle < -360F)
             angle += 360F;
         if (angle > 360F)

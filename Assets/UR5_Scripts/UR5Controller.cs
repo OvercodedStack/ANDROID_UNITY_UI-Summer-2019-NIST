@@ -106,10 +106,10 @@ public class UR5Controller : MonoBehaviour {
             jointList[i].transform.localEulerAngles = currentRotation;
             if (!Double.IsNaN(currentRotation.z))
             {
-                img_warn_singularity.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
+                img_warn_singularity.gameObject.SetActive(false); 
             }else
             {
-                img_warn_singularity.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+                img_warn_singularity.gameObject.SetActive(true);
 
             }
 

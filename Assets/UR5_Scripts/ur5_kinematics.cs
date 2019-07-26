@@ -50,12 +50,25 @@ public class ur5_kinematics : MonoBehaviour
     private GameObject[] jointList = new GameObject[6];
     private Slider[] sliderList = new Slider[6];
 
+    public GameObject img_OK_robot;
+    public GameObject img_OFF_robot;
 
     Matrix<float> robotTheta_filt;
 
     public void toggle_enabled()
     {
         enabled = !enabled;
+
+        if (enabled)
+        {
+            img_OFF_robot.SetActive(false);
+            img_OK_robot.SetActive(true);
+        }else
+        {
+            img_OFF_robot.SetActive(true);
+            img_OK_robot.SetActive(false);
+        }
+
     }
 
 
@@ -74,7 +87,7 @@ public class ur5_kinematics : MonoBehaviour
         controller.initializeSliders(sliderList);
 
         outputText.text = "0.0  0.0  0.0  0.0  0.0  0.0  ";
-
+        img_OFF_robot.SetActive(false);
     }
 
     //Update is called once per frame

@@ -15,11 +15,11 @@ public class UI_Image_indicator : MonoBehaviour {
     {
         if (status)
         {
-            img.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
+            img.GetComponent<Image>().color = new Color32(4, 113, 13, 100); //The warning indicator
         }
         else
         {
-            img.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+            img.GetComponent<Image>().color = new Color32(210, 139, 9, 100); //The green Indicator
         }
     }
 }

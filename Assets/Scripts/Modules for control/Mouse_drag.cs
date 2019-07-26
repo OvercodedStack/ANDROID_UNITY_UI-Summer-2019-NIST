@@ -25,6 +25,7 @@ public class Mouse_drag : MonoBehaviour {
     public Toggle move_to_position;
     public GameObject indicator;
     public float speed = 3.0F;
+    public InputField InputField_output_vector_position; 
 
     void Start()
     {
@@ -48,6 +49,7 @@ public class Mouse_drag : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position,indicator.transform.position,step);
             transform.rotation = Quaternion.RotateTowards(transform.rotation,indicator.transform.rotation,step);
         }
+        InputField_output_vector_position.text = transform.position.ToString(); 
     }
 
 

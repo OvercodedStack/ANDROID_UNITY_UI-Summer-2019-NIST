@@ -25,6 +25,8 @@ public class Change_robots : MonoBehaviour {
     public Dropdown selc_value;
     string[] rbt_list = new string[6] {"None", "UR5", "UR10L", "UR10R", "ABBL", "ABBR"};
 
+    const int TIMEOUT_PERIOD_FOR_ROBOT_SELECTION = 1; 
+
     // Use this for initialization
     void Start() {
         phraser = GetComponent<UR5_to_TPC>();
@@ -32,7 +34,7 @@ public class Change_robots : MonoBehaviour {
         selected_robot = "No robot selected";
         change_robot = false;
         old_time = Time.time;
-        image.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+        image.GetComponent<Image>().color = new Color32(210, 139, 9, 100);//The warning indicator
         output_text.text = selected_robot;
        
     }
@@ -45,10 +47,10 @@ public class Change_robots : MonoBehaviour {
         {
             float now_time = Time.time;
             phraser.change_robots_bool = change_robot;
-            if (now_time > old_time + 5 && change_robot)
+            if (now_time > old_time + TIMEOUT_PERIOD_FOR_ROBOT_SELECTION && change_robot)
             {
                 change_robot = !change_robot;
-                image.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+                image.GetComponent<Image>().color = new Color32(210, 139, 9, 100); //The Green indicator
             }
             else if (change_robot)
             {
@@ -80,7 +82,7 @@ public class Change_robots : MonoBehaviour {
     {
         change_robot = !change_robot;
         old_time = Time.time;
-        image.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
+        image.GetComponent<Image>().color = new Color32(4, 113, 13, 100); //The  indicator
 
     }
 }
