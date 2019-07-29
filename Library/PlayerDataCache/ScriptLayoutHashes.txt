@@ -17,7 +17,7 @@ c35752b81d25e001fee445da226f3c4e Assembly-CSharp-firstpass.dll:UnityStandardAsse
 fafaa1fd2b65670aaddb0b615c512216 Assembly-CSharp.dll:.Camera_controls
 62e91b45c7a3b3f54a574b259cdaebf1 Assembly-CSharp.dll:.Camera_orbit_around_model
 0df26d7642d4095bdac77a78b25e44a4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.BrakeLight
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Keylogger
+8076752f07b3b07e10701c326cdaf810 Assembly-CSharp.dll:.Keylogger
 153887456e1e00f991f8edf9ce22151d Assembly-CSharp.dll:.LeftJoystick
 5068bc7e323c614e8e3c4e61f062de7c Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Car.SkidTrail
 6ef10f2c9d52b20165b73caa5f02409d Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Aeroplane.AeroplaneUserControl4Axis
