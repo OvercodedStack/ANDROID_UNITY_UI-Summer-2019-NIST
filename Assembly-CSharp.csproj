@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Modules for metrics\Pathtracking_module.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\Task Objective Manager.cs" />
      <Compile Include="Assets\Scripts\Modules for metrics\Task_time_manager.cs" />
+     <Compile Include="Assets\Scripts\Modules for metrics\Tracker_gameobjects.cs" />
      <Compile Include="Assets\Scripts\raycast_collision_19.cs" />
      <Compile Include="Assets\Scripts\rotate_towards_script.cs" />
      <Compile Include="Assets\Scripts\Show_hide_axis.cs" />

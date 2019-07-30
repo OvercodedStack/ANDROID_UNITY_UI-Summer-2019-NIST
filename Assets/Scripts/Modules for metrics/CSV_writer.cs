@@ -1,22 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using System.Text;
-
+using MathNet.Numerics.LinearAlgebra;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// This is a basic CSV file writer meant for writing out to files for later review. The process works by 
 /// starting out with a user-given name for which the user can use to apply to a file to store data through.
 /// 
 /// The user can also load up a file from a dropdown menu from previous recordings. 
-/// 
-/// 
-/// 
-/// 
+
 /// </summary>
 
 
@@ -39,8 +35,27 @@ public class CSV_writer : MonoBehaviour
     public GameObject indicator;
     public Toggle toggle_recording;
     public Slider refresh_rate;
-    public Toggle toggle_replay; 
-    
+    public Toggle toggle_replay;
+
+
+
+    ///////////////////////////// Keylogger system
+    public InputField output_stream;
+    //public EventSystem system;
+    private float x, y;
+    Matrix<double> hor_mat = Matrix<double>.Build.Dense(Screen.width, Screen.height); //Landscape mode
+    Matrix<double> ver_mat = Matrix<double>.Build.Dense(Screen.height, Screen.width); //Portrait mode
+    public bool enable_logging = true; //Enables or disables the collection of data. 
+    string textfile_log_coordinates;
+    string mode;
+    string name_obj = "No action.";
+    float timeout_period = 0.25F; //Milisecond intervals
+    string ui_element_inuse = "";  
+    ////////////////////////////////////////////////
+
+
+
+
 
     //Get time from https://stackoverflow.com/questions/296920/how-do-you-get-the-current-time-of-day
     // Use this for initialization
@@ -49,8 +64,8 @@ public class CSV_writer : MonoBehaviour
         converter = GetComponent<UR5_to_TPC>();
         update_list();
         //file_name = path;
-        file_name += "/CSV_dat_";
-        file_name += DateTime.Now.ToString("hmmss");
+        file_name += "/user_actions_file_";
+        file_name += DateTime.Now.ToString("yyyy_MM_dd_hmmss");
         file_name += ".csv";
         file_name = fix_path(file_name);
         temp_name = file_name;
@@ -61,7 +76,7 @@ public class CSV_writer : MonoBehaviour
         {
             using (var sw = new StreamWriter(temp_name,true))
             {
-                var newLine = "Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,RbtID,GripperStat,DO1,DO2,DO3,DO4,Bypass,Chng_Rbots,X,Y,Z,Q_X,Q_Y,Q_Z,Q_W"; 
+                var newLine = "Jnt_1,Jnt_2,Jnt_3,Jnt_4,Jnt_5,Jnt_6,Robot_ID,Gripper_status,DO1,DO2,DO3,DO4,Bypass_active?,Chng_Rbots,X,Y,Z,Q_X,Q_Y,Q_Z,Q_W,Mouse_pos_X,Mouse_pos_Y,Screen_mode,Button_active"; 
                 sw.WriteLine(newLine);
                 sw.Flush();
             }
@@ -113,6 +128,77 @@ public class CSV_writer : MonoBehaviour
             recall_line();
             old_time = Time.time;
         }
+
+        //////////////////////
+        /*
+        //Utilities for picking up mouse input and formatting 
+        Vector3 mousy_input = Input.mousePosition;
+        x = mousy_input.x;
+        y = mousy_input.y;
+        try
+        {
+            //Adquires the name of the last button pressed or slider. 
+            name_obj = system.currentSelectedGameObject.name;
+
+        }
+        catch
+        {
+            Debug.Log("Waiting for action.");
+        }
+
+        //Creates and stores a heatmap of where the cursor has been using a matrix. 
+        var ori = Screen.orientation;
+        try
+        {
+            if (ori == ScreenOrientation.Landscape)
+            {
+                //Landscape mode
+                //hor_mat[Mathf.RoundToInt(x), Mathf.RoundToInt(y)] += 1; //Let the user use the csv file to generate the required data. 
+                mode = "landscape";
+            }
+            else
+            {
+                //Portrait modes
+                //ver_mat[Mathf.RoundToInt(x), Mathf.RoundToInt(y)] += 1; //Let the user use the csv file to generate the required data. 
+                mode = "portrait";
+            }
+        }
+        catch
+        {
+            Debug.Log("Skipping record");
+        }
+        //Formatting
+        string out_msg = "X_touch," + x + ",Y_touch," + y + "," + mode + "," + name_obj;
+        output_stream.text = out_msg;
+
+        ////////////////////Block for logging mouse pointer////////////////
+        if (enable_logging)
+        {
+            try
+            {
+                using (var sw = new StreamWriter(textfile_log_coordinates, true))
+                {
+                    sw.WriteLine(out_msg);
+                    sw.Flush();
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Could not write to file.");
+                Debug.LogError("IO error encountered");
+            }
+        }
+        /////////////////////
+        */
+
+
+
+    }
+
+
+    public void set_UI_element_inuse(string name)
+    {
+        ui_element_inuse = name; 
     }
 
     public void change_csv_save()
