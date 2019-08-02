@@ -1,9 +1,9 @@
 ﻿///////////////////////////////////////////////////////////////////////////////
 //
 //  Original System: Camera_controls.cs
-//  Subsystem:       Human-Robot Interaction
-//  Workfile:        Manus_Open_VR V2
-//  Revision:        1.0 - 6/22/2018
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        2.0 - 7/31/2019
 //  Author:          Esteban Segarra
 //
 //  Description

@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Keylogger.cs
+//  Subsystem:       Human-Robot Interaction
+//  Workfile:        Manus_Open_VR V2
+//  Revision:        1.0 - 6/15/2019
+//                                       
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This is a stand-alone version of the code that is used in the CSV writer but only outputs the user input instead of the robot coordinates.  
+///////////////////////////////////////////////////////////////////////////////
+
+using UnityEngine;
 using UnityEngine.UI;
 using MathNet.Numerics.LinearAlgebra;
 using UnityEngine.EventSystems;
@@ -13,8 +27,8 @@ public class Keylogger : MonoBehaviour {
     public InputField output_stream;
     public EventSystem system;
     private float x, y;
-    Matrix<double> hor_mat = Matrix<double>.Build.Dense(Screen.width, Screen.height); //Landscape mode
-    Matrix<double> ver_mat = Matrix<double>.Build.Dense(Screen.height, Screen.width); //Portrait mode
+    //Matrix<double> hor_mat = Matrix<double>.Build.Dense(Screen.width, Screen.height); //Landscape mode
+    //Matrix<double> ver_mat = Matrix<double>.Build.Dense(Screen.height, Screen.width); //Portrait mode
     public bool enable_logging = true; //Enables or disables the collection of data. 
     string textfile_log_coordinates;
     string mode;
@@ -70,7 +84,7 @@ public class Keylogger : MonoBehaviour {
             Debug.Log("Skipping record");
         }
         //Formatting
-        string out_msg = "X_touch," + x + ",Y_touch," + y + "," + mode + "," + name_obj;
+        string out_msg = "X:" + x + ",Y:" + y + "," + mode + "," + name_obj;
         output_stream.text = out_msg;
 
         ////////////////////Block for logging mouse pointer////////////////

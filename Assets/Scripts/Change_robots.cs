@@ -1,9 +1,18 @@
-﻿/*
-Simple script that allows the changing of the selected robot in the android application. Utilizes data adquired from the TCP server
-and displays the currently selected robot in the UI. 
-
-7/11/19 - Esteban Segarra M. 
-*/
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Camera_controls.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  Simple script that allows the changing of the selected robot in the android application. Utilizes data adquired from the TCP server
+//  and displays the currently selected robot in the UI.
+//
+///////////////////////////////////////////////////////////////////////////////
+ 
 
 using System.Collections;
 using System.Collections.Generic;

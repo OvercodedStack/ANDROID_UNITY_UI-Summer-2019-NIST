@@ -8,7 +8,7 @@
 //
 //  Description
 //  ===========
-//  Data phraser from UR5 to TPC server.  
+//  Data phraser from UR5 to TPC server. It is handling the parts of the robot that will ultimately pass through CRPI for export. 
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -59,12 +59,13 @@ public class UR5_to_TPC : MonoBehaviour
         angle_controller = robot.GetComponent<ur5_kinematics>();
         send_msg.onClick.AddListener(add_active_state);
 
-        //Digital Menu for 
+        //Digital Menu for choosing which ones shall be active and inactive. 
         digital_out_menu.ClearOptions();
         digital_out_menu.AddOptions(string_list);
     }
 
-    ////Update is called once per frame 
+    //Given the digital input ports found on the dropdown menu on UI, show what potential options there are and input them here.
+    //TODO: This script should be made dynamic to allow a larger and appendable amount of digital port IO 
     void Update()
     {
         bool temp_bool = false;
@@ -124,6 +125,7 @@ public class UR5_to_TPC : MonoBehaviour
         }
     }
 
+    //Adquires the data from the gripper
     string add_gripper()
     {
         string out_stg = null;
@@ -132,6 +134,7 @@ public class UR5_to_TPC : MonoBehaviour
         return out_stg;
     }
 
+    //Converts the digital output ports into strings
     string convert_booleans()
     {
         string digital_out = "";
@@ -142,6 +145,7 @@ public class UR5_to_TPC : MonoBehaviour
         return digital_out;
     }
 
+    //Merges all nessesary data from the robot to output to CRPI
     void add_active_state()
     {
         output_string = convert_array(angle_controller.get_vector_UR5());   //Get the robot coordninates
@@ -152,14 +156,19 @@ public class UR5_to_TPC : MonoBehaviour
         output_string += manual_bypass.isOn ? ",1" : ",0";                    //Choose to use Vicon or not
         output_string += change_robots_bool ? ",1" : ",0";
         output_string += ";#\n";
+
+
         server.set_msg(output_string);
     }
 
+
+    //Publically accessible method that returns the final constructed message to CRPI
     public string get_message()
     {
         return output_string;
     }
 
+    //Determines from the use of the name of the Robot, the appropiate Robot_ID#
     string decode_str(string word)
     {
         switch (word)
@@ -179,6 +188,7 @@ public class UR5_to_TPC : MonoBehaviour
         }
     }
 
+    //Converts a joint array into a single string
     string convert_array(float[] array_in)
     {
         string output_str = null;

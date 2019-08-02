@@ -1,7 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
- 
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: TCP_Client.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script is a stand-alone TCP client inherited from the TCP server source. 
+//  Code Adopt from https://gist.github.com/danielbierwirth/0636650b005834204cb19ef5ae6ccedb
+///////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;

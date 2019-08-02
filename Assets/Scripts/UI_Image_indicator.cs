@@ -1,5 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Switch_scenes.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script switches the color of a blank UnityEngine.UI.Image class to a different color.  
+//
+///////////////////////////////////////////////////////////////////////////////
+
 using UnityEngine;
 using UnityEngine.UI; 
 

@@ -1,25 +1,44 @@
-﻿/// A general class that is used as a method for rotating the end-effector
-/// based on the use of visual reference points for a gameobject
-/// Created on July 3, 2019 by Esteban Segarra 
-
-
-using System.Collections;
-using System.Collections.Generic;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: rotator.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/3/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  A general class that is used as a method for rotating the end-effector
+//  based on the use of visual reference points for a gameobject
+//  
+//  Note that this is the script handling the effects of moving the end effector in the XYZ plane, Rotation, and freemode
+//
+///////////////////////////////////////////////////////////////////////////////
+ 
 using UnityEngine;
 
 public class rotator : MonoBehaviour { 
     private Vector3 mOffset;
     private float mZCoord;
+
+    ///IMPORTANT: These limit control how the area of control where the user can control the robot. You can adjust these values to your
+    ///specifications but be wary that they could have an impact in the physical dimension. 
     private float x_limit = 6.75F;
     private float y_limit = 8.0F;
     private float y_low_limit = 1.2F; 
     private float z_limit = 6.75F;
     public GameObject target_object; 
     private Quaternion init_quaternion;
-    
+    private CSV_writer sendee_gameObject;
+
+
+
     //Initialize to locate the starting angle
     void Start()
     {
+        GameObject temp_obj = GameObject.Find("TCP_Server_node_Obj_coordinator");
+        sendee_gameObject = temp_obj.GetComponent<CSV_writer>();
+
         init_quaternion = transform.localRotation; 
     }
 
@@ -70,7 +89,7 @@ public class rotator : MonoBehaviour {
         Vector3 mouse_world_pos = GetMouseWorldPos();
         Vector3 new_pos;
         Vector3 mouse_pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mZCoord);
-
+        sendee_gameObject.set_UI_element_inuse(this.name);
         //Depending on what gameobject this item is applied, the behaviour is dependent on the 
         //object name applied. 
         switch (this.name)
@@ -78,7 +97,10 @@ public class rotator : MonoBehaviour {
             //Allows freeform movement in the world
             case "Control_pt":
                 //transform.parent.position = mouse_world_pos + mOffset;
-                target_object.transform.position = mouse_world_pos + mOffset;
+                Vector3 freeroam_pos = mouse_world_pos + mOffset;
+                if (Mathf.Abs(freeroam_pos.x) < x_limit && freeroam_pos.y < y_limit 
+                    && freeroam_pos.y > y_low_limit && Mathf.Abs(freeroam_pos.z) < x_limit)
+                    target_object.transform.position = freeroam_pos;
                 break;
             //Y axis transformations 
             case "Y_axis":

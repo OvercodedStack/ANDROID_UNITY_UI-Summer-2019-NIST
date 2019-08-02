@@ -1,8 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: raycast_collision_19.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 6/15/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  The purpose of this script is to be able to detect another gameobject located in the virtual space with a raytrace. 
+//  Both the raycast and the recieving object should have colliders that can be utilized for detecting when one object has touched the other. 
+//
+///////////////////////////////////////////////////////////////////////////////
  
-
+using UnityEngine;
 
 public class raycast_collision_19 : MonoBehaviour {
 

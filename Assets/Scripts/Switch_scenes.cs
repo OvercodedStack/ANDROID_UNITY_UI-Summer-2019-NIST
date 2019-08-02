@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Switch_scenes.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script switches between scenes in the main menu of the app. 
+//
+///////////////////////////////////////////////////////////////////////////////
+
+using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Switch_scenes : MonoBehaviour {
     public void GotoMainScene()

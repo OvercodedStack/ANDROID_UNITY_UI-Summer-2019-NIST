@@ -122,6 +122,13 @@ namespace TPC_Server
         /// Send message to client using socket connection. 	
         /// </summary> 	
 
+        private bool tcp_blocked = false;
+
+        public void toggle_tcp_transmission()
+        {
+            tcp_blocked = !tcp_blocked;
+        }
+
         private int counter; 
         private void SendMessage(string serverMessage)
         {
@@ -144,7 +151,7 @@ namespace TPC_Server
                 server_status = true;
                 // Get a stream object for writing. 			
                 NetworkStream stream = connectedTcpClient.GetStream();
-                if (stream.CanWrite)
+                if (stream.CanWrite && !tcp_blocked)
                 {
                     //Debug.Log("Hi, I'm a robot!");
                     //string serverMessage = "This is a message from your server.";

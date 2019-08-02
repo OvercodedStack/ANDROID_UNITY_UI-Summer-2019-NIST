@@ -1,11 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Tracker_gameobjects.cs
+//  Subsystem:       Human-Robot Interaction
+//  Workfile:        Manus_Open_VR V2
+//  Revision:        1.0 - 6/15/2019
+//                                       
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  The purpose of this generic class is to allow the drop and play functionality of tracking every button and slider in the project with one script.
+//  
+///////////////////////////////////////////////////////////////////////////////
 
-/* The purpose of this generic class is to allow the drop and play functionality of tracking every button and slider in the project with one script.
- * This in theory should be efficient and effective however this is still in testing. 
- * 
- * 
- */
+using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Tracker_gameobjects : MonoBehaviour {
@@ -21,7 +30,10 @@ public class Tracker_gameobjects : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        sendee_gameObject = GetComponent<CSV_writer>();
+        GameObject temp_obj = GameObject.Find("TCP_Server_node_Obj_coordinator");
+
+
+        sendee_gameObject = temp_obj.GetComponent<CSV_writer>();
         try
         {
             slider = this.gameObject.GetComponent<Slider>();

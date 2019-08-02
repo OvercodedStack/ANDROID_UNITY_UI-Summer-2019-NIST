@@ -1,6 +1,16 @@
-﻿///  Simple script to show or hide certain components regarding the 
-///  endpoint manipulator. 
-///  Developed on July 5th, 2019
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Show_hide_axis.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/5/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script determines which mode should the end-piece manipulator should be active at a given time.  
+//
+///////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
 
@@ -18,6 +28,7 @@ public class Show_hide_axis : MonoBehaviour {
 
     void Start()
     {
+        //Default to this "axis mode" 
         axis_rot_x.SetActive(false);
         axis_rot_y.SetActive(false);
         axis_rot_z.SetActive(false);
@@ -29,11 +40,13 @@ public class Show_hide_axis : MonoBehaviour {
         mode++;
         switch (mode)
         {
+            //Show the XYZ axis
             case 0:
                 axis_x.SetActive(false);
                 axis_y.SetActive(false);
                 axis_z.SetActive(false);
                 break;
+            //Show the Rotator loops
             case 1:
                 axis_rot_x.SetActive(true);
                 axis_rot_y.SetActive(true);
@@ -42,6 +55,7 @@ public class Show_hide_axis : MonoBehaviour {
                 axis_y.SetActive(false);
                 axis_z.SetActive(false);
                 break;
+            //Show "freemode" box to move dynamically
             case 2:
                 axis_rot_x.SetActive(false);
                 axis_rot_y.SetActive(false);

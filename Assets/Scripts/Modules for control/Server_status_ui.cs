@@ -1,12 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Trackpoint.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  The purpose of this script is nothing more than to show the status of the server on a bar below. 
+//  It should theorically determine if the server has a connected client or not. 
+//
+//  Note: Does not work.
+//
+///////////////////////////////////////////////////////////////////////////////
+ 
 using UnityEngine;
 using UnityEngine.UI;
 using TPC_Server;
-
-/// <summary>
-/// The purpose of this script is nothing more than to show the status of the server on a bar below. It should theorically determine if the server has a connected client or not. 
-/// </summary>
+ 
 
 
 public class Server_status_ui : MonoBehaviour {

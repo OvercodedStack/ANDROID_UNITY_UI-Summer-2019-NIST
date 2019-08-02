@@ -1,4 +1,19 @@
-﻿using System.Collections;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Switch_scenes.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script does nothing, was meant as an audio test in one time or another.  
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

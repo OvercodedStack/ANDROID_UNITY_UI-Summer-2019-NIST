@@ -1,12 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: TCP_scanner_and_selector.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script is purely meant for an example, this script does not work as intended and was never finished because priorities changed by the time
+//  this was at any stage. 
+//
+///////////////////////////////////////////////////////////////////////////////
 
+using UnityEngine;
 using System;
-using System.Text;
-using System.Net;
 using System.Net.Sockets;
-using System.Threading;
+ 
 
 
 public class TCP_scanner_and_selector_19 : MonoBehaviour

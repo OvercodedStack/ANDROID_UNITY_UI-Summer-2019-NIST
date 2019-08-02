@@ -49,6 +49,7 @@ public class ur5_kinematics : MonoBehaviour
     public GetFromServer gfs;
     private GameObject[] jointList = new GameObject[6];
     private Slider[] sliderList = new Slider[6];
+    private bool will_use_sliders = false; 
 
     public GameObject img_OK_robot;
     public GameObject img_OFF_robot;
@@ -206,10 +207,18 @@ public class ur5_kinematics : MonoBehaviour
             outputText.text = matrix_thetha.Column(0).Multiply((180f / Mathf.PI)).ToVectorString("0.0  ");
         }else
         {
-            angle_vector = controller.getJointValues();
+            if (will_use_sliders)
+            {
+                angle_vector = controller.getJointValues();
+            }
         }
 
 
+    }
+
+    public void toggle_to_sliders()
+    {
+        will_use_sliders = !will_use_sliders;
     }
 
     void locate_real_world_pt(Matrix<float> fwd_kin_mat)

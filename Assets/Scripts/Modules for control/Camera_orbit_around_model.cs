@@ -1,4 +1,19 @@
-﻿using System.Collections;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+//  Original System: Camera_orbit_around_model.cs
+//  Subsystem:       Human-Robot Interaction with alternative UI controls
+//  Workfile:        Android App 
+//  Revision:        1.0 - 7/11/2019
+//  Author:          Esteban Segarra
+//
+//  Description
+//  ===========
+//  This script is legacy. This was meant for use on a gameobject to be kept rigid at a specifide location.  
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
