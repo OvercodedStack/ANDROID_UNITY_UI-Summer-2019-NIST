@@ -148,6 +148,10 @@ public class UR5_to_TPC : MonoBehaviour
     //Merges all nessesary data from the robot to output to CRPI
     void add_active_state()
     {
+        //String format for outputting to the tcp server.
+        //{$UR5_pos:(value 1),(value 2),(value 3),(value 4),(value 5),(value 6), Robot Utilities:(Robot ID),(Gripper),(Digital Port 1),(Digital Port 2),(Digital Port 3),(Digital Port 4),
+        //(Manual Bypass flag),(Vicon Robot changer flag)#} 
+
         output_string = convert_array(angle_controller.get_vector_UR5());   //Get the robot coordninates
         output_string += "Robot Utilities:";
         output_string += decode_str(chgner.selected_robot);                 //Convert robot ID to known 

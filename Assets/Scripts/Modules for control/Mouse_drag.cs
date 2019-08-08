@@ -29,6 +29,7 @@ public class Mouse_drag : MonoBehaviour {
 
     void Start()
     {
+        //Startup position and rotation
         reset_position_vec = transform.position;
         reset_orientation = transform.rotation;
     }

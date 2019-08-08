@@ -245,7 +245,7 @@ public class CSV_writer : MonoBehaviour
                 temp_msg = temp_msg +"," + box_msg;
 
                 //Add the timestamp
-                temp_msg = DateTime.Now.ToString("hmmss") + temp_msg;
+                temp_msg = DateTime.Now.ToString("hmmss") +","+ temp_msg;
                 //Writing in here the statistics of the mouse pointer, the screen layout, and the buttons being pressed
                 var dat_user_cmds = x +"," + y + "," + mode + "," + ui_element_inuse;
                 temp_msg += dat_user_cmds;
