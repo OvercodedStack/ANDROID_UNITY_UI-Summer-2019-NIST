@@ -40,11 +40,55 @@ As Github limits the size of uploads, this project will be limited to only inclu
 ### Usage
 You can start the project through pressing the “play” button or you can compile directly onto a working android device with Android version 6.0.1. All presets are set for this version and it may not be guaranteed to work on newer Android versions. It is recommended to use a device with at least 2560x1600 pixels in the horizontal or vertical configuration as the app is optimized to use the most display available. 
 
+### Controls
+
+There are three possible ways of directly controlling the robot at the present moment; these are (from left to right) the XYZ position and rotation control, joystick controls, and free-move mode.  
+
+![alt text](https://raw.githubusercontent.com/OvercodedStack/CRPI-UI-DOCUMENTATION-Summer-of-2019/master/Images/Control%20schemes.PNG)
+
+The XYZ control is similar in action to those controls as provided by a traditional CAD or 3D modeling program and intended for ease of understanding. 
+
+The joystick moves the end-effector and rotates it accordingly.
+
+The free-move mode moves the endeffector according to how the user desires to move the device relative to the angle of the camera and their touch-swipe. 
+
 ### CRPI Message format
 In order for this system to operate correctly, this system was designed to communicate internally with the use of TCP websockets that streams a string to CRPI for internal communciation. 
 This string order is sent out at the rate given by the Unity TCP Server script in the TCP_Server_node_obj_coord script. For convenience, this is streamed at a rate every 2 seconds. 
 
 The message format for this string is stated as the following: 
-__ {$UR5_pos:(joint value 1),(joint value 2),(joint value 3),(joint value 4),(joint value 5),(joint value 6), Robot Utilities:(Robot ID),(Gripper),(Digital Port 1),(Digital Port 2),(Digital Port 3),(Digital Port 4),(Manual Bypass flag),(Vicon Robot changer flag)#} __
+__{$UR5_pos:(joint value 1),(joint value 2),(joint value 3),(joint value 4),(joint value 5),(joint value 6), Robot Utilities:(Robot ID),(Gripper),(Digital Port 1),(Digital Port 2),(Digital Port 3),(Digital Port 4),(Manual Bypass flag),(Vicon Robot changer flag)#}__
 
+1. Joint value 1 - 6: Angles as recieved to the UR5
+2. Robot ID#: the enabled robot
+4. Gripper: This allows the gripper to toggle between closed and open 
+5. DO(1 - 4): These are the digital port outputs as controlled by the user
+6. Manual Bypass flag: This allows the user to bypass the Vicon system and also override the Vicon vision control
+7. Vicon Robot changer flag: This flag determines if the user desires to switch robots either through the vicon or the override
 
+### Log file 
+
+For most actions performed on the Unity App, there are various listeners and actions that are being recorded, including the time-stamp, the position of the end-effector, the position of the joints, digital ports, and many other features that are occuring at the time of use. This will be detailed in the following file list explanation. In chronological order from left to right the log file will appear as such: 
+
+1. Timestamp: Stored as hour minutes seconds with no comma spacing 
+2. Jnt(1 - 6): The joint angle value in degrees rotated towards. This is the data that has been sent to the robot for CRPI
+3. Robot ID#: The enabled robot (desired robot) flag
+4. Gripper: This allows the gripper to toggle between closed and open 
+5. DO(1 - 4): These are the digital port outputs as controlled by the user
+6. Bypass Active?: This allows the user to bypass the Vicon system and also override the Vicon vision control
+7. Chng_robots: This flag determines if the user desires to switch robots either through the vicon or the override
+8. X: Coordinate system based on Unity scale and location (position)
+9. Y: Coordinate system based on Unity scale and location (position)
+10. Z: Coordinate system based on Unity scale and location (position)
+11. Q_X: Coordinate system based on Unity scale and location (rotation in quaternion)
+12. Q_Y: Coordinate system based on Unity scale and location (rotation in quaternion)
+13. Q_Z: Coordinate system based on Unity scale and location (rotation in quaternion)
+14. Q_W: Coordinate system based on Unity scale and location (rotation in quaternion)
+15. Mouse pointer X: Coordinates based on those relative to the position on the screen size
+16. Mouse pointer Y: Coordinates based on those relative to the position on the screen size
+17. Screen Mode: Direction of screen (Landscape or portrait) 
+18. Button being used: The action being performed by the user 
+
+### Bugs 
+
+There are some bugs that 
