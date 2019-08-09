@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 521}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1050
     height: 1637
-  m_MinSize: {x: 950, y: 521}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -105,10 +105,10 @@ MonoBehaviour:
     y: 30
     width: 1050
     height: 1587
-  m_MinSize: {x: 577, y: 471}
+  m_MinSize: {x: 583, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 96
+  controlID: 46
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -129,10 +129,10 @@ MonoBehaviour:
     y: 0
     width: 1050
     height: 1587
-  m_MinSize: {x: 577, y: 471}
+  m_MinSize: {x: 583, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 97
+  controlID: 47
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 434, y: 271}
   m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
-  controlID: 98
+  controlID: 48
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -230,10 +230,10 @@ MonoBehaviour:
     y: 1122
     width: 1050
     height: 465
-  m_MinSize: {x: 577, y: 200}
-  m_MaxSize: {x: 12002, y: 4021}
+  m_MinSize: {x: 583, y: 221}
+  m_MaxSize: {x: 12008, y: 4021}
   vertical: 0
-  controlID: 83
+  controlID: 99
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,8 +252,8 @@ MonoBehaviour:
     y: 0
     width: 202
     height: 465
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -275,10 +275,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 202
     y: 0
-    width: 104
+    width: 479
     height: 465
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 104, y: 121}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -298,9 +298,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 306
+    x: 681
     y: 0
-    width: 744
+    width: 369
     height: 465
   m_MinSize: {x: 277, y: 71}
   m_MaxSize: {x: 4002, y: 4021}
@@ -412,14 +412,14 @@ MonoBehaviour:
     width: 686
     height: 1101
   m_SceneLighting: 1
-  lastFramingTime: 7206.513786627277
+  lastFramingTime: 8270.156246176988
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1147.7467, y: 915.6084, z: -13}
+    m_Target: {x: 0, y: 5.26, z: -10.52}
     speed: 2
-    m_Value: {x: 1147.7467, y: 915.6084, z: -13}
+    m_Value: {x: 0, y: 5.26, z: -10.52}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -446,9 +446,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1769.4331
+    m_Target: 22
     speed: 2
-    m_Value: 1769.4331
+    m_Value: 22
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -498,20 +498,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Modules for control
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Modules for control
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\elwood.campus.nist.gov\735\users\ems9\My Documents\Manus VR
     Unity Folder - 2019\Android App - Intelligent Sys Div
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3a2b0000
-    m_LastClickedID: 11066
-    m_ExpandedIDs: 000000007c280000ac2a0000d42a0000442b0000342c00005e2c0000dc2c0000d02d0000062e0000aa3a0000ac3a0000ae3a0000b03a0000b23a0000b43a0000b63a000000ca9a3bffffff7f
+    m_SelectedIDs: 462c0000
+    m_LastClickedID: 11334
+    m_ExpandedIDs: 000000007c280000962a0000be2a00002e2b00001c2c0000462c0000c22c0000ae2d0000e22d0000a83a0000aa3a0000ac3a0000ae3a0000b03a0000b23a0000b43a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -539,7 +539,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007c280000ac2a0000d42a0000442b0000342c00005e2c0000dc2c0000d02d0000062e0000aa3a0000ac3a0000ae3a0000b03a0000b23a0000b43a0000b63a0000
+    m_ExpandedIDs: 000000007c280000962a0000be2a00002e2b00001c2c0000462c0000c22c0000ae2d0000e22d0000a83a0000aa3a0000ac3a0000ae3a0000b03a0000b23a0000b43a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -648,23 +648,23 @@ MonoBehaviour:
     height: 444
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f2080000
-    m_LastClickedID: 0
-    m_ExpandedIDs: ec64ffffa6fbffff00000000ec31000052320000ba330000063400002235000046380000
+    m_SelectedIDs: f8350000
+    m_LastClickedID: 13816
+    m_ExpandedIDs: a6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: XZ
-      m_OriginalName: XZ
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 14418
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -697,7 +697,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2124
     y: 618
-    width: 100
+    width: 475
     height: 444
 --- !u!114 &20
 MonoBehaviour:
@@ -721,9 +721,9 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 2228
+    x: 2603
     y: 618
-    width: 742
+    width: 367
     height: 444
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0

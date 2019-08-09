@@ -83,6 +83,8 @@ public class Mouse_drag : MonoBehaviour {
         }
     }
 
+
+    //When activated, this function simply overwrites the current position and rotation with the start-up ones. 
     public void reset_pos_butt()
     {
         transform.position = reset_position_vec;
