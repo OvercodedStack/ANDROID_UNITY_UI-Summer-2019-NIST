@@ -1,10 +1,15 @@
 # Modular Android Robot Controller Interface (MACI) for CRPI 
 This project is sponsored by the Intelligent Systems Division of NIST.
 
+### Disclaimer
+Certain commercial equipment, instruments, or materials are identified in this paper to foster understanding. Such identification does not imply recommendation or endorsement by the National Institute of Standards and Technology, nor does it imply that the materials or equipment identified are necessarily the best available for the purpose.
+
 ### Introduction 
 This Unity project is a collection of files intended to run on a tablet or smartphone device in order to provide control over a robot's functionalities. This app can be installed on any device with Android device 6.0 (newer models unconfirmed).
 This app can provide an robot controller for use on Android. The intent of this project is to be able to create a user interface that is modular, functional, and flexible enough for users to modify and use in combination with a real industrial 
 robot. For the purposes of application, the list below showcases the setup utilized for a use-basis case with the interface. 
+
+For more information on the project and its general purpose, please visit the [documentation repository](https://github.com/OvercodedStack/CRPI-UI-DOCUMENTATION-Summer-of-2019). 
 
 ### ASSUMPTIONS ABOUT HARDWARE AND SOFTWARE
 The hardware that was utilized throughout this project remained consistent and can be summarized in the following list: 
@@ -93,8 +98,19 @@ For most actions performed on the Unity App, there are various listeners and act
 
 There are some bugs that didn't get enough time to be fixed or implemented. In specific this section will talk about the bugs that would have taken more time to fix than would have been to implement. 
 
-⋅⋅* The joystick controls control direction get disoriented when the target gameobject is moved with the other types of controls (e.g: XYZ rotation). 
-⋅⋅* Some script names were not the best choice for use in certain situations and due to the nature of Unity, when a game object is included with a different script, could result in a missing reference error. In specific, please note this is highly probable with the script *TCP_Server_node_Obj_coordinator* due to its name-specific reference in *rotator.cs*.
-⋅⋅* The Z-axis on the XYZ axis control is emulated using XY mouse delta positions and as such may result in sometimes inaccurate readings or "floaty" control. 
-⋅⋅* The inverse kinematic control model is not very good at avoiding collisions with itself and may result in accidental clipping with the real robot itself.
-⋅⋅* Some scripts are legacy and are not used anymore. 
+- The joystick controls control direction get disoriented when the target gameobject is moved with the other types of controls (e.g: XYZ rotation). 
+- Some script names were not the best choice for use in certain situations and due to the nature of Unity, when a game object is included with a different script, could result in a missing reference error. In specific, please note this is highly probable with the script *TCP_Server_node_Obj_coordinator* due to its name-specific reference in *rotator.cs*.
+- The Z-axis on the XYZ axis control is emulated using XY mouse delta positions and as such may result in sometimes inaccurate readings or "floaty" control. 
+- The inverse kinematic control model is not very good at avoiding collisions with itself and may result in accidental clipping with the real robot itself.
+- Some scripts are legacy and are not used anymore. 
+
+### Conclusion
+
+Special thanks to the following people during SURF 2019:
+
+- Shelly Bagchi
+- Dr. Jeremy Marvel
+- Megan Zimmerman
+- Holiday Inn SURF Fellows
+
+Thank you all for being the great people you guys are!
