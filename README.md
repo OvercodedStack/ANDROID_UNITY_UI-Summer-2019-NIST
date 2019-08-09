@@ -4,6 +4,10 @@ This project is sponsored by the Intelligent Systems Division of NIST.
 ### Disclaimer
 Certain commercial equipment, instruments, or materials are identified in this paper to foster understanding. Such identification does not imply recommendation or endorsement by the National Institute of Standards and Technology, nor does it imply that the materials or equipment identified are necessarily the best available for the purpose.
 
+![alt text](https://github.com/OvercodedStack/CRPI-UI-DOCUMENTATION-Summer-of-2019/blob/master/Images/System%20Overview.png?raw=true)
+
+![alt text](https://github.com/OvercodedStack/CRPI-UI-DOCUMENTATION-Summer-of-2019/blob/master/Images/IMG_0005.JPG?raw=true)
+
 ### Introduction 
 This Unity project is a collection of files intended to run on a tablet or smartphone device in order to provide control over a robot's functionalities. This app can be installed on any device with Android device 6.0 (newer models unconfirmed).
 This app can provide an robot controller for use on Android. The intent of this project is to be able to create a user interface that is modular, functional, and flexible enough for users to modify and use in combination with a real industrial 
