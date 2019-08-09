@@ -91,4 +91,10 @@ For most actions performed on the Unity App, there are various listeners and act
 
 ### Bugs 
 
-There are some bugs that 
+There are some bugs that didn't get enough time to be fixed or implemented. In specific this section will talk about the bugs that would have taken more time to fix than would have been to implement. 
+
+⋅⋅* The joystick controls control direction get disoriented when the target gameobject is moved with the other types of controls (e.g: XYZ rotation). 
+⋅⋅* Some script names were not the best choice for use in certain situations and due to the nature of Unity, when a game object is included with a different script, could result in a missing reference error. In specific, please note this is highly probable with the script *TCP_Server_node_Obj_coordinator* due to its name-specific reference in *rotator.cs*.
+⋅⋅* The Z-axis on the XYZ axis control is emulated using XY mouse delta positions and as such may result in sometimes inaccurate readings or "floaty" control. 
+⋅⋅* The inverse kinematic control model is not very good at avoiding collisions with itself and may result in accidental clipping with the real robot itself.
+⋅⋅* Some scripts are legacy and are not used anymore. 
