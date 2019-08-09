@@ -39,7 +39,7 @@ As Github limits the size of uploads, this project will be limited to only inclu
 1.	Start Unity editor
 2.	Click on new, name a new project, start it as any type of project 
 3.	Navigate to the “Project” tab and right click on the assets folder. Click on “Show in Explorer” 
-4.	Delete all the files inside the folder and copy the repository files into the folder
+4.	Delete all the files inside the folder and copy all repository files into the folder
 5.	You’ve successfully installed the project into unity
 
 ### Usage
@@ -61,6 +61,8 @@ The free-move mode moves the endeffector according to how the user desires to mo
 In order for this system to operate correctly, this system was designed to communicate internally with the use of TCP websockets that streams a string to CRPI for internal communciation. 
 This string order is sent out at the rate given by the Unity TCP Server script in the TCP_Server_node_obj_coord script. For convenience, this is streamed at a rate every 2 seconds. 
 
+#### By default, transmission of data is sent through the local network pointed to the CRPI client at 169.254.152.2 on port 27000
+
 The message format for this string is stated as the following: 
 __{$UR5_pos:(joint value 1),(joint value 2),(joint value 3),(joint value 4),(joint value 5),(joint value 6), Robot Utilities:(Robot ID),(Gripper),(Digital Port 1),(Digital Port 2),(Digital Port 3),(Digital Port 4),(Manual Bypass flag),(Vicon Robot changer flag)#}__
 
@@ -72,6 +74,12 @@ __{$UR5_pos:(joint value 1),(joint value 2),(joint value 3),(joint value 4),(joi
 7. Vicon Robot changer flag: This flag determines if the user desires to switch robots either through the vicon or the override
 
 ### Log file 
+
+The log file for the app can be found in the following locations:
+
+For use in the Unity editor: **/Assets/Resources/**
+
+For use in the Android App:  **Device Storage/Android/Data/com.NIST.CRPI_UI/files**
 
 For most actions performed on the Unity App, there are various listeners and actions that are being recorded, including the time-stamp, the position of the end-effector, the position of the joints, digital ports, and many other features that are occuring at the time of use. This will be detailed in the following file list explanation. In chronological order from left to right the log file will appear as such: 
 
@@ -99,7 +107,7 @@ For most actions performed on the Unity App, there are various listeners and act
 There are some bugs that didn't get enough time to be fixed or implemented. In specific this section will talk about the bugs that would have taken more time to fix than would have been to implement. 
 
 - The joystick controls control direction get disoriented when the target gameobject is moved with the other types of controls (e.g: XYZ rotation). 
-- Some script names were not the best choice for use in certain situations and due to the nature of Unity, when a game object is included with a different script, could result in a missing reference error. In specific, please note this is highly probable with the script *TCP_Server_node_Obj_coordinator* due to its name-specific reference in *rotator.cs*.
+- Some script names were not the best choice for use in certain situations and due to the nature of Unity, when a game object is included with a different script, could result in a missing reference error. In specific, please note this is highly probable with the script *TCP_Server_node_Obj_coordinator* due to its name-specific reference in **rotator.cs**.
 - The Z-axis on the XYZ axis control is emulated using XY mouse delta positions and as such may result in sometimes inaccurate readings or "floaty" control. 
 - The inverse kinematic control model is not very good at avoiding collisions with itself and may result in accidental clipping with the real robot itself.
 - Some scripts are legacy and are not used anymore. 
